@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 
 /**
  *
@@ -60,7 +56,7 @@ public class Ventana_Arranque extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(308, Short.MAX_VALUE))
         );
 
         lbl_Tipo_Usuario.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
@@ -69,6 +65,11 @@ public class Ventana_Arranque extends javax.swing.JFrame {
 
         btn_Sub_Aca.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btn_Sub_Aca.setText("Subdirector Academico");
+        btn_Sub_Aca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Sub_AcaActionPerformed(evt);
+            }
+        });
 
         btn_Jef_Div.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btn_Jef_Div.setText("Jefe de División");
@@ -87,7 +88,7 @@ public class Ventana_Arranque extends javax.swing.JFrame {
         });
 
         btn_Coo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btn_Coo.setText("Coordinador de tutorias");
+        btn_Coo.setText("Coordinador de Tutorias");
         btn_Coo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_CooActionPerformed(evt);
@@ -100,32 +101,28 @@ public class Ventana_Arranque extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(98, 98, 98)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_Tipo_Usuario)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(lbl_Tipo_Usuario))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
+                        .addGap(55, 55, 55)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(btn_Coo)
                                 .addComponent(btn_Sub_Aca))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(24, 24, 24)
-                                        .addComponent(btn_Jef_Div))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(48, 48, 48)
-                                        .addComponent(btn_Tut)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 48, Short.MAX_VALUE))
+                                .addGap(24, 24, 24)
+                                .addComponent(btn_Jef_Div))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(48, 48, 48)
+                                .addComponent(btn_Tut)))))
+                .addGap(0, 102, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(88, 88, 88)
                 .addComponent(lbl_Tipo_Usuario)
                 .addGap(18, 18, 18)
                 .addComponent(btn_Sub_Aca, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -135,7 +132,7 @@ public class Ventana_Arranque extends javax.swing.JFrame {
                 .addComponent(btn_Jef_Div, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_Tut, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -163,6 +160,15 @@ public class Ventana_Arranque extends javax.swing.JFrame {
     private void btn_CooActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CooActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_CooActionPerformed
+
+    private void btn_Sub_AcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Sub_AcaActionPerformed
+        
+        Ventana_Sub vs = new Ventana_Sub();
+        vs.setVisible(true);
+        
+        dispose();
+        
+    }//GEN-LAST:event_btn_Sub_AcaActionPerformed
 
     /**
      * @param args the command line arguments
