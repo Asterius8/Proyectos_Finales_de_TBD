@@ -75,7 +75,7 @@ public class Login extends javax.swing.JFrame {
         
             VentanaLoginTutor vlt = new VentanaLoginTutor();
             vlt.setVisible(true);
-            this.dispose();
+            this.dispose();//Desaparece esta ventana
             
         }
         

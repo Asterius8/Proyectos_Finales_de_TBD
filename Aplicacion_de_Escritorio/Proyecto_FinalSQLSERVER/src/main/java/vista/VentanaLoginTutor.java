@@ -1,7 +1,11 @@
 package vista;
 
+import Controlador.UsuarioDAO;
+import javax.swing.JOptionPane;
+
 public class VentanaLoginTutor extends javax.swing.JFrame {
 
+    String usuario, contraseña;
     public VentanaLoginTutor() {
         initComponents();
         setLocationRelativeTo(null);
@@ -16,18 +20,19 @@ public class VentanaLoginTutor extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txt_usuario_t = new javax.swing.JTextField();
         lbl_usuario_t = new javax.swing.JLabel();
-        txt_contraseña_t = new javax.swing.JTextField();
         lbl_contraseña_t = new javax.swing.JLabel();
         btn_ingresar_t = new javax.swing.JButton();
         btn_registrar_t = new javax.swing.JButton();
         btn_cancelar_t = new javax.swing.JButton();
+        pwd_password = new javax.swing.JPasswordField();
+        cbx_mostrar_contrase = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Bienvenido al sistema de accesso de tutores");
 
-        txt_usuario_t.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txt_usuario_t.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txt_usuario_t.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_usuario_tActionPerformed(evt);
@@ -36,13 +41,6 @@ public class VentanaLoginTutor extends javax.swing.JFrame {
 
         lbl_usuario_t.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lbl_usuario_t.setText("Usuario:");
-
-        txt_contraseña_t.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txt_contraseña_t.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_contraseña_tActionPerformed(evt);
-            }
-        });
 
         lbl_contraseña_t.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lbl_contraseña_t.setText("Contraseña:");
@@ -71,25 +69,36 @@ public class VentanaLoginTutor extends javax.swing.JFrame {
             }
         });
 
+        pwd_password.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        cbx_mostrar_contrase.setText("Mostrar contraseña");
+        cbx_mostrar_contrase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbx_mostrar_contraseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lbl_contraseña_t)
-                    .addComponent(lbl_usuario_t)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btn_ingresar_t, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)
-                        .addComponent(btn_cancelar_t)
-                        .addGap(24, 24, 24)
-                        .addComponent(btn_registrar_t))
-                    .addComponent(txt_contraseña_t)
-                    .addComponent(txt_usuario_t))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(pwd_password)
+                        .addComponent(lbl_contraseña_t)
+                        .addComponent(lbl_usuario_t)
+                        .addComponent(jLabel1)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(btn_ingresar_t)
+                            .addGap(25, 25, 25)
+                            .addComponent(btn_cancelar_t)
+                            .addGap(25, 25, 25)
+                            .addComponent(btn_registrar_t))
+                        .addComponent(txt_usuario_t))
+                    .addComponent(cbx_mostrar_contrase))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,19 +111,21 @@ public class VentanaLoginTutor extends javax.swing.JFrame {
                 .addComponent(txt_usuario_t, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addComponent(lbl_contraseña_t)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pwd_password, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbx_mostrar_contrase)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(txt_contraseña_t, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_ingresar_t, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn_registrar_t, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(44, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addComponent(btn_cancelar_t, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44))))
+                        .addGap(26, 26, 26))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -135,16 +146,29 @@ public class VentanaLoginTutor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_usuario_tActionPerformed
 
-    private void txt_contraseña_tActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_contraseña_tActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_contraseña_tActionPerformed
-
     private void btn_ingresar_tActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingresar_tActionPerformed
-        // TODO add your handling code here:
+        
+        usuario = txt_usuario_t.getText();
+        contraseña = pwd_password.getText();
+        
+        if (UsuarioDAO.buscarUsuarios(usuario, contraseña)) {
+            
+            JOptionPane.showMessageDialog(this, "Bienvendo\nUsuario: " + usuario + "\nContraseña: " + contraseña);
+            
+        }else{
+        
+             JOptionPane.showMessageDialog(this, "Verifique los datos ingresados.");
+        
+        }
+        
+        
+        
     }//GEN-LAST:event_btn_ingresar_tActionPerformed
 
     private void btn_registrar_tActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrar_tActionPerformed
-        // TODO add your handling code here:
+        VentanaRegistrarTutor vrt = new VentanaRegistrarTutor();
+        vrt.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btn_registrar_tActionPerformed
 
     private void btn_cancelar_tActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelar_tActionPerformed
@@ -154,6 +178,18 @@ public class VentanaLoginTutor extends javax.swing.JFrame {
         this.dispose();
 
     }//GEN-LAST:event_btn_cancelar_tActionPerformed
+
+    private void cbx_mostrar_contraseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_mostrar_contraseActionPerformed
+        
+        if (cbx_mostrar_contrase.isSelected()) {
+                    // Mostrar caracteres
+                    pwd_password.setEchoChar((char) 0);
+                } else {
+                    // Ocultar caracteres
+                    pwd_password.setEchoChar('•'); // Cambiar al carácter de eco deseado
+                }
+        
+    }//GEN-LAST:event_cbx_mostrar_contraseActionPerformed
 
     
     public static void main(String args[]) {
@@ -169,11 +205,12 @@ public class VentanaLoginTutor extends javax.swing.JFrame {
     private javax.swing.JButton btn_cancelar_t;
     private javax.swing.JButton btn_ingresar_t;
     private javax.swing.JButton btn_registrar_t;
+    private javax.swing.JCheckBox cbx_mostrar_contrase;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_contraseña_t;
     private javax.swing.JLabel lbl_usuario_t;
-    private javax.swing.JTextField txt_contraseña_t;
+    private javax.swing.JPasswordField pwd_password;
     private javax.swing.JTextField txt_usuario_t;
     // End of variables declaration//GEN-END:variables
 }
