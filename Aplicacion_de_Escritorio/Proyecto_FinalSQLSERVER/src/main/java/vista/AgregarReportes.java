@@ -15,6 +15,8 @@ public class AgregarReportes extends javax.swing.JFrame {
      */
     public AgregarReportes() {
         initComponents();
+        setLocationRelativeTo(null);
+        setTitle("Registrar Reporte de tutorias");
     }
 
     /**
