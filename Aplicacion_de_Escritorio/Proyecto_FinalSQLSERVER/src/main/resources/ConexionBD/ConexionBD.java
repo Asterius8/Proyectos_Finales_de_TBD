@@ -1,6 +1,5 @@
 package ConexionBD;
 
-import Modelo.Alumnos;
 import Modelo.Usuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,7 +13,7 @@ public class ConexionBD {
     private static PreparedStatement pstm;
     String usuario = "Oscar";
     String contraseña = "oscar";
-    String db = "BD_Tutorias_Proyecto_2024";
+    String db = "BD_Tutorias";
     String puerto = "1433";
 
     private ConexionBD() {
@@ -136,36 +135,6 @@ public class ConexionBD {
         }
         return null;
 
-    }
-    
-    public static boolean agregarAlumno(Alumnos a) {
-    
-        try {
-            
-            Connection conexion = getConexion();
-            
-            pstm = conexion.prepareStatement("INSERT INTO alumnos VALUES(?,?)");
-            pstm.setInt(1, a.getNum_control());
-            pstm.setString(2, a.getNombre());
-            pstm.setString(3, a.getPaterno());
-            pstm.setString(4, a.getMaterno());
-            pstm.setString(5, a.getFecha_nac());
-            pstm.setLong(6, a.getTelefono());
-            pstm.setByte(7, a.getSemestre());
-            pstm.setByte(8, a.getCarrera());
-            
-            pstm.execute();
-            
-            return true;
-            
-        } catch (Exception e) {
-            
-            System.out.println("Error en instrucción DML");
-            
-        }
-        
-        return false;
-        
     }
     
 }//clase conexion

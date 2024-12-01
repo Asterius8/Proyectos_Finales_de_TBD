@@ -1,5 +1,7 @@
 package vista;
 
+import java.net.URL;
+
 public class Login extends javax.swing.JFrame {
 
     public Login() {
@@ -72,9 +74,17 @@ public class Login extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         
         if(jComboBox1.getSelectedItem() == "Tutor"){
-
+        
+            
+            URL url = getClass().getResource("/imagenes/logo.png");
+            if (url == null) {
+                System.out.println("Recurso no encontrado");
+            } else {
+                System.out.println("Recurso encontrado en: " + url.toExternalForm());
+            }
             VentanaLoginTutor vlt = new VentanaLoginTutor();
             vlt.setVisible(true);
+
             this.dispose();//Desaparece esta ventana
             
         }
