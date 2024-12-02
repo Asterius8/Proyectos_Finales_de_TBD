@@ -14,7 +14,7 @@ public class ConexionBD {
     private static PreparedStatement pstm;
     String usuario = "Oscar";
     String contraseña = "oscar";
-    String db = "BD_Tutorias_Proyecto_2024";
+    String db = "BD_Tutorias_Proyecto_Final_2024";
     String puerto = "1433";
 
     private ConexionBD() {
@@ -144,7 +144,7 @@ public class ConexionBD {
             
             Connection conexion = getConexion();
             
-            pstm = conexion.prepareStatement("INSERT INTO alumnos VALUES(?,?)");
+            pstm = conexion.prepareStatement("INSERT INTO Alumnos(num_control, nombre_alumno, paterno, materno, fecha_nac, num_telefono, semestre, carrera) VALUES(?,?,?,?,?,?,?,?)");
             pstm.setInt(1, a.getNum_control());
             pstm.setString(2, a.getNombre());
             pstm.setString(3, a.getPaterno());
@@ -152,7 +152,7 @@ public class ConexionBD {
             pstm.setString(5, a.getFecha_nac());
             pstm.setLong(6, a.getTelefono());
             pstm.setByte(7, a.getSemestre());
-            pstm.setByte(8, a.getCarrera());
+            pstm.setString(8, a.getCarrera());
             
             pstm.execute();
             
@@ -160,12 +160,39 @@ public class ConexionBD {
             
         } catch (Exception e) {
             
-            System.out.println("Error en instrucción DML");
+            System.out.println("Error en instrucción DML" + e);
             
         }
         
         return false;
         
+    }
+    
+     public static ResultSet BuscarNumControlIgual(String consulta) {
+        
+        try {
+            
+            Connection conexion = getConexion();
+            
+            if (conexion != null) {
+                
+                PreparedStatement pstm = conexion.prepareStatement(consulta);
+                     
+                return pstm.executeQuery();
+                
+            } else {
+                
+                System.out.println("Error: No se pudo obtener la conexión a la base de datos.");
+                
+            }
+        } catch (SQLException e) {
+            
+            System.out.println("Error en instrucción SQL a nivel conexion BD");
+            
+            
+        }
+        return null;
+
     }
     
 }//clase conexion

@@ -10,14 +10,14 @@ public class Alumnos {
     private String fecha_nac;
     private long telefono;
     private byte semestre;
-    private byte carrera;
+    private String carrera;
 
     //Constructor(es)
+
     public Alumnos() {
-        
     }
 
-    public Alumnos(int num_control, String nombre, String paterno, String materno, String fecha_nac, long telefono, byte semestre, byte carrera) {
+    public Alumnos(int num_control, String nombre, String paterno, String materno, String fecha_nac, long telefono, byte semestre, String carrera) {
         this.num_control = num_control;
         this.nombre = nombre;
         this.paterno = paterno;
@@ -27,8 +27,6 @@ public class Alumnos {
         this.semestre = semestre;
         this.carrera = carrera;
     }
-    
-    //Getter & Setter
 
     public int getNum_control() {
         return num_control;
@@ -86,13 +84,15 @@ public class Alumnos {
         this.semestre = semestre;
     }
 
-    public byte getCarrera() {
+    public String getCarrera() {
         return carrera;
     }
 
-    public void setCarrera(byte carrera) {
+    public void setCarrera(String carrera) {
         this.carrera = carrera;
     }
+    
+    
     
     
     

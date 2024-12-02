@@ -1,5 +1,7 @@
 package vista;
 
+import Controlador.AlumnosDAO;
+import Modelo.Alumnos;
 import javax.swing.JOptionPane;
 
 public class VentanaAltaAlumnos extends javax.swing.JFrame {
@@ -142,6 +144,11 @@ public class VentanaAltaAlumnos extends javax.swing.JFrame {
         });
 
         btn_limpiar_campos.setText("Limpiar Campos");
+        btn_limpiar_campos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_limpiar_camposActionPerformed(evt);
+            }
+        });
 
         btn_cancelar.setText("Cancelar");
         btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -273,7 +280,62 @@ public class VentanaAltaAlumnos extends javax.swing.JFrame {
             String fecha_nac = txt_fecha_nac.getText();
             long telefono = Long.parseLong(txt_num_telefono.getText());
             byte semestre = (byte) cmb_semestres.getSelectedIndex();
-            byte carrera = (byte) cmb_carreras.getSelectedIndex();
+            String carrera = String.valueOf(cmb_carreras.getSelectedItem());
+            byte contador = 0;
+
+            for (int i = 0; i < fecha_nac.length(); i++) {
+
+                if (fecha_nac.charAt(i) == '-') {
+
+                    contador++;
+
+                }
+            }
+
+            if (contador == 2) {
+
+                String[] fecha = new String[3];
+                fecha = fecha_nac.split("-");
+
+                if (fecha[0].length() == 4) {
+
+                    if (fecha[1].length() == 2 && Integer.parseInt(fecha[1]) >= 01 && Integer.parseInt(fecha[1]) <= 12) {
+
+                        if (fecha[2].length() == 2 && Integer.parseInt(fecha[2]) >= 01 && Integer.parseInt(fecha[2]) <= 31) {
+
+                            if (AlumnosDAO.BuscarNumControlIgualDAO(String.valueOf(num_control))) {
+
+                                if (AlumnosDAO.agregarAlumno(new Alumnos(num_control, nombre, paterno, materno, fecha_nac, telefono, semestre, carrera))) {
+
+                                    JOptionPane.showMessageDialog(this, "Exito");
+
+                                    this.limpiezaComponentes();
+
+                                }
+
+                            } else {
+
+                                JOptionPane.showMessageDialog(this, "Numero de control repetido");
+
+                            }
+
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Sea tan amable de ingresar la fecha en formato (aaaa-mm-dd)");
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Sea tan amable de ingresar la fecha en formato (aaaa-mm-dd)");
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Sea tan amable de ingresar la fecha en formato (aaaa-mm-dd)");
+                }
+
+            } else {
+
+                JOptionPane.showMessageDialog(this, "Sea tan amable de ingresar la fecha en formato (aaaa-mm-dd)");
+
+            }
 
         } else {
 
@@ -361,12 +423,31 @@ public class VentanaAltaAlumnos extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_num_telefonoKeyTyped
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
-        
+
         VentanaHubTutor vht = new VentanaHubTutor();
         vht.setVisible(true);
         this.dispose();
-        
+
     }//GEN-LAST:event_btn_cancelarActionPerformed
+
+    private void btn_limpiar_camposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiar_camposActionPerformed
+
+        this.limpiezaComponentes();
+
+    }//GEN-LAST:event_btn_limpiar_camposActionPerformed
+
+    public void limpiezaComponentes() {
+
+        txt_num_control.setText("");
+        txt_nombre.setText("");
+        txt_paterno.setText("");
+        txt_materno.setText("");
+        txt_fecha_nac.setText("");
+        txt_num_telefono.setText("");
+        cmb_semestres.setSelectedIndex(0);
+        cmb_carreras.setSelectedIndex(0);
+
+    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
