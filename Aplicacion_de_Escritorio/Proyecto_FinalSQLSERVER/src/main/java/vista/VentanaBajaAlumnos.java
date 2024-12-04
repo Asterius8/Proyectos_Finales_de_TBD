@@ -1,20 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package vista;
 
-/**
- *
- * @author Oscar
- */
+import Controlador.AlumnosDAO;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class VentanaBajaAlumnos extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VentanaBajaAlumnos
-     */
-    public VentanaBajaAlumnos() {
+    DefaultTableModel modelo;
+
+    public VentanaBajaAlumnos() throws SQLException {
         initComponents();
+        modelo = (DefaultTableModel) tbl_alumnos.getModel();
+        this.mostrar();
     }
 
     /**
@@ -34,7 +35,7 @@ public class VentanaBajaAlumnos extends javax.swing.JFrame {
         lbl_num_control = new javax.swing.JLabel();
         txt_num_control = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_alumnos = new javax.swing.JTable();
         btn_eliminar = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
 
@@ -79,7 +80,13 @@ public class VentanaBajaAlumnos extends javax.swing.JFrame {
         lbl_num_control.setForeground(new java.awt.Color(255, 255, 255));
         lbl_num_control.setText("Numero de Control: ");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        txt_num_control.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_num_controlKeyTyped(evt);
+            }
+        });
+
+        tbl_alumnos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -87,19 +94,29 @@ public class VentanaBajaAlumnos extends javax.swing.JFrame {
                 "Numero de control", "Nombres", "Ap. Paterno", "Ap. Materno", "Fecha de Nacimiento", "Edad", "Telefono", "Semestre", "Carrera"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
             };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbl_alumnos);
 
         btn_eliminar.setText("Eliminar");
+        btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminarActionPerformed(evt);
+            }
+        });
 
         btn_cancelar.setText("Cancelar");
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -108,20 +125,22 @@ public class VentanaBajaAlumnos extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_intrucciones)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lbl_num_control)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_num_control, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(46, 46, 46)
-                                .addComponent(btn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 250, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(lbl_intrucciones)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lbl_num_control)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_num_control, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
+                        .addComponent(btn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(67, 67, 67))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,6 +176,58 @@ public class VentanaBajaAlumnos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txt_num_controlKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_num_controlKeyTyped
+
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c) || txt_num_control.getText().length() >= 8) {
+
+            evt.consume();
+
+        }
+
+    }//GEN-LAST:event_txt_num_controlKeyTyped
+
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
+        VentanaHubTutor vht = new VentanaHubTutor();
+        vht.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_cancelarActionPerformed
+
+    private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
+        
+        String numerodecontro = txt_num_control.getText();
+        
+        if (!numerodecontro.equals("")) {
+            
+            System.out.println("Si");
+            
+            if (AlumnosDAO.BuscarNumControlIgualDAO2(txt_num_control.getText())) {
+                
+                System.out.println("Si");
+                
+                if (AlumnosDAO.eliminarAlumnoDAO(txt_num_control.getText())) {
+
+                    try {
+                        JOptionPane.showMessageDialog(this, "Alumno elimindo correctamente");
+              
+                        mostrar();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(VentanaBajaAlumnos.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+
+                }
+
+            } else {
+
+                JOptionPane.showMessageDialog(this, "No se encontro ningun registro con ese numero de control");
+
+            }
+
+    }//GEN-LAST:event_btn_eliminarActionPerformed
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -187,7 +258,11 @@ public class VentanaBajaAlumnos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaBajaAlumnos().setVisible(true);
+                try {
+                    new VentanaBajaAlumnos().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(VentanaBajaAlumnos.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -198,11 +273,37 @@ public class VentanaBajaAlumnos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lbl_eliminar;
     private javax.swing.JLabel lbl_imagen;
     private javax.swing.JLabel lbl_intrucciones;
     private javax.swing.JLabel lbl_num_control;
+    private javax.swing.JTable tbl_alumnos;
     private javax.swing.JTextField txt_num_control;
     // End of variables declaration//GEN-END:variables
+
+    public void mostrar() throws SQLException {
+
+        ResultSet rs = AlumnosDAO.buscar();
+
+        String datos[] = new String[9];
+        
+        //vaciar filas anteriores
+        modelo.setRowCount(0);
+
+        while (rs.next()) {
+            datos[0] = rs.getString(1);
+            datos[1] = rs.getString(2);
+            datos[2] = rs.getString(3);
+            datos[3] = rs.getString(4);
+            datos[4] = rs.getString(5);
+            datos[5] = rs.getString(6);
+            datos[6] = rs.getString(7);
+            datos[7] = rs.getString(8);
+            datos[8] = rs.getString(9);
+            modelo.addRow(datos);
+
+        }
+
+    }
+
 }

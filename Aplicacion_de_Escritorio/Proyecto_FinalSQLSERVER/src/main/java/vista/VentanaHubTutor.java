@@ -1,5 +1,9 @@
 package vista;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class VentanaHubTutor extends javax.swing.JFrame {
 
     public VentanaHubTutor() {
@@ -55,6 +59,11 @@ public class VentanaHubTutor extends javax.swing.JFrame {
 
         btn_eliminar_alumnos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/delete_12319395 (1).png"))); // NOI18N
         btn_eliminar_alumnos.setText("Eliminar");
+        btn_eliminar_alumnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminar_alumnosActionPerformed(evt);
+            }
+        });
 
         btn_editar_alumnos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/file_11235591 (1).png"))); // NOI18N
         btn_editar_alumnos.setText("Editar");
@@ -126,9 +135,7 @@ public class VentanaHubTutor extends javax.swing.JFrame {
                         .addComponent(btn_editar_reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btn_buscar_reporte))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lbl_seccion_reportes)
-                        .addGap(407, 407, 407)))
+                    .addComponent(lbl_seccion_reportes))
                 .addGap(17, 17, 17))
         );
         jPanel3Layout.setVerticalGroup(
@@ -214,6 +221,20 @@ public class VentanaHubTutor extends javax.swing.JFrame {
         this.dispose();
 
     }//GEN-LAST:event_btn_salirActionPerformed
+
+    private void btn_eliminar_alumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminar_alumnosActionPerformed
+
+        VentanaBajaAlumnos vba;
+        try {
+            vba = new VentanaBajaAlumnos();
+            vba.setVisible(true);
+        this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaHubTutor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
+    }//GEN-LAST:event_btn_eliminar_alumnosActionPerformed
 
     public static void main(String args[]) {
 

@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ConexionBD {
     //Atributo
@@ -168,6 +169,26 @@ public class ConexionBD {
         
     }
     
+    public static ResultSet buscar(){
+    
+        try {
+            
+            Connection conexion = getConexion();
+            String sentencia = "SELECT * FROM Alumnos";
+            
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(sentencia);
+            
+            return rs;
+            
+        } catch (Exception e) {
+            
+            
+        }
+        
+        return null;
+    }
+    
      public static ResultSet BuscarNumControlIgual(String consulta) {
         
         try {
@@ -194,5 +215,29 @@ public class ConexionBD {
         return null;
 
     }
+     
+    public static boolean eliminarAlumnoBD(String filtro){
+    
+        try {
+            
+            Connection conexion = getConexion();
+            
+            pstm = conexion.prepareStatement("DELETE FROM Alumnos WHERE num_control = ?");
+            pstm.setString(1, filtro);
+            
+            pstm.execute();
+            
+            return true;
+            
+        } catch (Exception e) {
+            
+            System.out.println("Error en instrucción DML");
+            
+        }
+        
+        return false;
+        
+    }
+    
     
 }//clase conexion
