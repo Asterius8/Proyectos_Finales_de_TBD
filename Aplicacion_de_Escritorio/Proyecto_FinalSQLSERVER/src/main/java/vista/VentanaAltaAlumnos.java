@@ -43,7 +43,7 @@ public class VentanaAltaAlumnos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 255, 102));
+        jPanel1.setBackground(new java.awt.Color(204, 151, 243));
 
         lbl_registro_alumnos.setFont(new java.awt.Font("SimSun", 1, 36)); // NOI18N
         lbl_registro_alumnos.setText("Registro de Alumnos");

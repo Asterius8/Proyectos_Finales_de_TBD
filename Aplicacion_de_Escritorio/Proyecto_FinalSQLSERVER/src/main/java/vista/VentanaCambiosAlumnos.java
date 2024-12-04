@@ -54,7 +54,7 @@ public class VentanaCambiosAlumnos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 102));
+        jPanel1.setBackground(new java.awt.Color(102, 102, 255));
 
         lbl_titulo.setFont(new java.awt.Font("SimSun", 1, 36)); // NOI18N
         lbl_titulo.setText("Editar Alumno");
