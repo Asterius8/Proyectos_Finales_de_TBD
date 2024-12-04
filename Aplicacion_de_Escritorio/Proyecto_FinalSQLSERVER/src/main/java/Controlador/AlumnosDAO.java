@@ -31,18 +31,25 @@ public class AlumnosDAO {
         return res;
 
     }
-    
-    
-    
-    //------------------- CONSULTAS -----------------------------------------------------------------------------------------------------------------------------
-    public static ResultSet buscar(){
-    
-        return ConexionBD.buscar();
-    
+    //------------------- CAMBIOS ------------------------------------------------------------------------------------------------------------------------------
+
+    public static boolean cambiosAlumnoDAO(Alumnos a) {
+
+        boolean res = false;
+
+        res = ConexionBD.cambiosAlumnoBD(a);
+
+        return res;
+
     }
-            
-    
-    
+
+    //------------------- CONSULTAS -----------------------------------------------------------------------------------------------------------------------------
+    public static ResultSet buscar() {
+
+        return ConexionBD.buscar();
+
+    }
+
     public static boolean BuscarNumControlIgualDAO(String filtro1) {
 
         try {
@@ -67,9 +74,9 @@ public class AlumnosDAO {
         }
 
         return false;
-        
+
     }
-    
+
     public static boolean BuscarNumControlIgualDAO2(String filtro1) {
 
         try {
@@ -94,7 +101,7 @@ public class AlumnosDAO {
         }
 
         return false;
-        
+
     }
 
 }

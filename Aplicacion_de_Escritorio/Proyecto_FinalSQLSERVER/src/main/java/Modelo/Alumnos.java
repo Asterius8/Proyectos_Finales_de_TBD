@@ -8,6 +8,7 @@ public class Alumnos {
     private String paterno;
     private String materno;
     private String fecha_nac;
+    private byte edad;
     private long telefono;
     private byte semestre;
     private String carrera;
@@ -27,6 +28,28 @@ public class Alumnos {
         this.semestre = semestre;
         this.carrera = carrera;
     }
+
+    public Alumnos(int num_control, String nombre, String paterno, String materno, String fecha_nac, byte edad, long telefono, byte semestre, String carrera) {
+        this.num_control = num_control;
+        this.nombre = nombre;
+        this.paterno = paterno;
+        this.materno = materno;
+        this.fecha_nac = fecha_nac;
+        this.edad = edad;
+        this.telefono = telefono;
+        this.semestre = semestre;
+        this.carrera = carrera;
+    }
+
+    public byte getEdad() {
+        return edad;
+    }
+
+    public void setEdad(byte edad) {
+        this.edad = edad;
+    }
+    
+    
 
     public int getNum_control() {
         return num_control;

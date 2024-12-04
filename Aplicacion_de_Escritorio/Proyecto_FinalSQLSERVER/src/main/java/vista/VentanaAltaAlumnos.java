@@ -70,6 +70,11 @@ public class VentanaAltaAlumnos extends javax.swing.JFrame {
         lbl_num_control.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbl_num_control.setText("Numero de Control:");
 
+        txt_num_control.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_num_controlActionPerformed(evt);
+            }
+        });
         txt_num_control.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_num_controlKeyTyped(evt);
@@ -435,6 +440,10 @@ public class VentanaAltaAlumnos extends javax.swing.JFrame {
         this.limpiezaComponentes();
 
     }//GEN-LAST:event_btn_limpiar_camposActionPerformed
+
+    private void txt_num_controlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_num_controlActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_num_controlActionPerformed
 
     public void limpiezaComponentes() {
 

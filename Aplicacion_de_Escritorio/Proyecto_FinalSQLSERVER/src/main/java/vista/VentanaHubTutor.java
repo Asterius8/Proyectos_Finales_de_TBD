@@ -67,6 +67,11 @@ public class VentanaHubTutor extends javax.swing.JFrame {
 
         btn_editar_alumnos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/file_11235591 (1).png"))); // NOI18N
         btn_editar_alumnos.setText("Editar");
+        btn_editar_alumnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editar_alumnosActionPerformed(evt);
+            }
+        });
 
         btn_buscar_alumnos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/database_2596172.png"))); // NOI18N
         btn_buscar_alumnos.setText("Buscar");
@@ -235,6 +240,18 @@ public class VentanaHubTutor extends javax.swing.JFrame {
         
 
     }//GEN-LAST:event_btn_eliminar_alumnosActionPerformed
+
+    private void btn_editar_alumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_alumnosActionPerformed
+        
+        try {
+            VentanaCambiosAlumnos vca = new VentanaCambiosAlumnos();
+            vca.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaHubTutor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btn_editar_alumnosActionPerformed
 
     public static void main(String args[]) {
 

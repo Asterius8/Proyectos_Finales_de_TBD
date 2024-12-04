@@ -239,5 +239,36 @@ public class ConexionBD {
         
     }
     
+    public static boolean cambiosAlumnoBD(Alumnos a){
+    
+        try {
+            
+            Connection conexion = getConexion();
+            
+            pstm = conexion.prepareStatement("UPDATE Alumnos SET nombre_alumno = ?, paterno = ?, materno = ?, fecha_nac = ?, edad = ?, num_telefono = ?, semestre = ?,carrera = ? WHERE num_control = " +a.getNum_control()+"");
+            
+            pstm.setString(1, a.getNombre());
+            pstm.setString(2, a.getPaterno());
+            pstm.setString(3, a.getMaterno());
+            pstm.setString(4, a.getFecha_nac());
+            pstm.setByte(5, a.getEdad());
+            pstm.setLong(6, a.getTelefono());
+            pstm.setByte(7, a.getSemestre());
+            pstm.setString(8, a.getCarrera());
+            
+            pstm.execute();
+            
+            return true;
+            
+        } catch (Exception e) {
+            
+            System.out.println("Error en instrucción DML" + e);
+            
+        }
+        
+        return false;
+        
+    }
+    
     
 }//clase conexion
