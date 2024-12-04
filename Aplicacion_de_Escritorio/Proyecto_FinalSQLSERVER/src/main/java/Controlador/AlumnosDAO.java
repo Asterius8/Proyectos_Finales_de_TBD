@@ -50,6 +50,79 @@ public class AlumnosDAO {
 
     }
 
+    public static ResultSet buscarPorNumDAO(String filtro) {
+
+        String sql = "SELECT * FROM Alumnos WHERE num_control ='" + filtro + "'";
+        ResultSet rs = ConexionBD.BuscarNumControlIgual(sql);
+        return rs;
+
+    }
+
+    public static ResultSet buscarPorNombreDAO(String filtro) {
+
+        String sql = "SELECT * FROM Alumnos WHERE nombre_alumno ='" + filtro + "'";
+        ResultSet rs = ConexionBD.BuscarNumControlIgual(sql);
+        return rs;
+
+    }
+
+    public static ResultSet buscarPorPaternoDAO(String filtro) {
+
+        String sql = "SELECT * FROM Alumnos WHERE paterno ='" + filtro + "'";
+        ResultSet rs = ConexionBD.BuscarNumControlIgual(sql);
+        return rs;
+
+    }
+
+    public static ResultSet buscarPorMaternoDAO(String filtro) {
+
+        String sql = "SELECT * FROM Alumnos WHERE materno ='" + filtro + "'";
+        ResultSet rs = ConexionBD.BuscarNumControlIgual(sql);
+        return rs;
+
+    }
+
+    public static ResultSet buscarPorFechaNacDAO(String filtro) {
+
+        String sql = "SELECT * FROM Alumnos WHERE fecha_nac ='" + filtro + "'";
+        ResultSet rs = ConexionBD.BuscarNumControlIgual(sql);
+        return rs;
+
+    }
+
+    public static ResultSet buscarPorEdadDAO(String filtro) {
+
+        String sql = "SELECT * FROM Alumnos WHERE edad ='" + filtro + "'";
+        ResultSet rs = ConexionBD.BuscarNumControlIgual(sql);
+        return rs;
+
+    }
+
+    public static ResultSet buscarPorNumTelefonoDAO(String filtro) {
+
+        String sql = "SELECT * FROM Alumnos WHERE num_telefono ='" + filtro + "'";
+        ResultSet rs = ConexionBD.BuscarNumControlIgual(sql);
+        return rs;
+
+    }
+
+    public static ResultSet buscarPorSemestreDAO(String filtro) {
+
+        String sql = "SELECT * FROM Alumnos WHERE semestre ='" + filtro + "'";
+        ResultSet rs = ConexionBD.BuscarNumControlIgual(sql);
+        return rs;
+
+    }
+
+    public static ResultSet buscarPorCarreraDAO(String filtro) {
+
+        String sql = "SELECT * FROM Alumnos WHERE carrera ='" + filtro + "'";
+        ResultSet rs = ConexionBD.BuscarNumControlIgual(sql);
+        return rs;
+
+    }
+
+    //------------------- CONSULTAS -----------------------------------------------------------------------------------------------------------------------------
     public static boolean BuscarNumControlIgualDAO(String filtro1) {
 
         try {
