@@ -1,6 +1,7 @@
 package vista;
 
 import Controlador.AlumnosDAO;
+import Modelo.Alumnos;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -53,11 +54,12 @@ public class VentanaConsultaAlumno extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(153, 255, 153));
+        jPanel1.setBackground(new java.awt.Color(255, 102, 51));
 
         lbl_imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
 
-        lbl_titulo.setFont(new java.awt.Font("SimSun", 1, 36)); // NOI18N
+        lbl_titulo.setFont(new java.awt.Font("Verdana", 1, 36)); // NOI18N
+        lbl_titulo.setForeground(new java.awt.Color(0, 153, 204));
         lbl_titulo.setText("Buscar Alumno");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -83,11 +85,16 @@ public class VentanaConsultaAlumno extends javax.swing.JFrame {
                 .addGap(45, 45, 45))
         );
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 204));
+        jPanel2.setBackground(new java.awt.Color(0, 153, 153));
 
         bg1.add(jrb_num_control);
         jrb_num_control.setFont(new java.awt.Font("SimSun", 0, 14)); // NOI18N
         jrb_num_control.setText("Numero de Control:");
+        jrb_num_control.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jrb_num_controlMouseClicked(evt);
+            }
+        });
         jrb_num_control.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrb_num_controlActionPerformed(evt);
@@ -97,26 +104,56 @@ public class VentanaConsultaAlumno extends javax.swing.JFrame {
         bg1.add(jrb_paterno);
         jrb_paterno.setFont(new java.awt.Font("SimSun", 0, 14)); // NOI18N
         jrb_paterno.setText("Apellido Paterno:");
+        jrb_paterno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrb_paternoActionPerformed(evt);
+            }
+        });
 
         bg1.add(jrb_nombres);
         jrb_nombres.setFont(new java.awt.Font("SimSun", 0, 14)); // NOI18N
         jrb_nombres.setText("Nombres:");
+        jrb_nombres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrb_nombresActionPerformed(evt);
+            }
+        });
 
         bg1.add(jrb_materno);
         jrb_materno.setFont(new java.awt.Font("SimSun", 0, 14)); // NOI18N
         jrb_materno.setText("Apellido Materno:");
+        jrb_materno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrb_maternoActionPerformed(evt);
+            }
+        });
 
         bg1.add(jrb_fecha_nac);
         jrb_fecha_nac.setFont(new java.awt.Font("SimSun", 0, 14)); // NOI18N
         jrb_fecha_nac.setText("Fecha de Nacimiento (aaaa-mm-dd):");
+        jrb_fecha_nac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrb_fecha_nacActionPerformed(evt);
+            }
+        });
 
         bg1.add(jrb_num_telefono);
         jrb_num_telefono.setFont(new java.awt.Font("SimSun", 0, 14)); // NOI18N
         jrb_num_telefono.setText("Numero de Telefono:");
+        jrb_num_telefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrb_num_telefonoActionPerformed(evt);
+            }
+        });
 
         bg1.add(jrb_edad);
         jrb_edad.setFont(new java.awt.Font("SimSun", 0, 14)); // NOI18N
         jrb_edad.setText("Edad:");
+        jrb_edad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrb_edadActionPerformed(evt);
+            }
+        });
 
         bg1.add(jrb_carrera);
         jrb_carrera.setFont(new java.awt.Font("SimSun", 0, 14)); // NOI18N
@@ -149,19 +186,74 @@ public class VentanaConsultaAlumno extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_alumnos);
 
+        txt_num_control.setEnabled(false);
+        txt_num_control.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_num_controlKeyTyped(evt);
+            }
+        });
+
+        txt_fecha_nac.setEnabled(false);
+        txt_fecha_nac.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_fecha_nacKeyTyped(evt);
+            }
+        });
+
+        txt_nombres.setEnabled(false);
+        txt_nombres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nombresKeyTyped(evt);
+            }
+        });
+
+        txt_paterno.setEnabled(false);
         txt_paterno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_paternoActionPerformed(evt);
             }
         });
+        txt_paterno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_paternoKeyTyped(evt);
+            }
+        });
+
+        txt_materno.setEnabled(false);
+        txt_materno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_maternoKeyTyped(evt);
+            }
+        });
+
+        txt_num_telefono.setEnabled(false);
+        txt_num_telefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_num_telefonoKeyTyped(evt);
+            }
+        });
+
+        txt_edad.setEnabled(false);
+        txt_edad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_edadKeyTyped(evt);
+            }
+        });
 
         cmb_semestres.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion...", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        cmb_semestres.setEnabled(false);
 
         cmb_carrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion...", "ISC", "IM", "IIA", "LA", "CP" }));
+        cmb_carrera.setEnabled(false);
 
         bg1.add(jrb_mostrar_todo);
         jrb_mostrar_todo.setSelected(true);
         jrb_mostrar_todo.setText("Mostrar Todo");
+        jrb_mostrar_todo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrb_mostrar_todoActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Buscar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -171,6 +263,11 @@ public class VentanaConsultaAlumno extends javax.swing.JFrame {
         });
 
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -214,10 +311,10 @@ public class VentanaConsultaAlumno extends javax.swing.JFrame {
                                 .addComponent(txt_num_telefono, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)))))
                 .addGap(57, 57, 57)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jrb_mostrar_todo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jrb_mostrar_todo, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(196, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 758, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
@@ -290,7 +387,17 @@ public class VentanaConsultaAlumno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jrb_num_controlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_num_controlActionPerformed
-        // TODO add your handling code here:
+
+        txt_num_control.enable(true);
+        txt_nombres.enable(false);
+        txt_paterno.enable(false);
+        txt_materno.enable(false);
+        txt_fecha_nac.enable(false);
+        txt_edad.enable(false);
+        txt_num_telefono.enable(false);
+        cmb_semestres.enable(false);
+        cmb_carrera.enable(false);
+
     }//GEN-LAST:event_jrb_num_controlActionPerformed
 
     private void tbl_alumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_alumnosMouseClicked
@@ -303,6 +410,7 @@ public class VentanaConsultaAlumno extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
+        //-------------------------------------------------------------------------------------------
         if (jrb_num_control.isSelected()) {
 
             try {
@@ -355,8 +463,49 @@ public class VentanaConsultaAlumno extends javax.swing.JFrame {
 
             try {
 
-                ResultSet rs = AlumnosDAO.buscarPorFechaNacDAO(txt_fecha_nac.getText());
-                mostrarfiltrados(rs);
+                String fecha_nac = txt_fecha_nac.getText();
+                byte contador = 0;
+
+                for (int i = 0; i < fecha_nac.length(); i++) {
+
+                    if (fecha_nac.charAt(i) == '-') {
+
+                        contador++;
+
+                    }
+                }
+
+                if (contador == 2) {
+
+                    String[] fecha = new String[3];
+                    fecha = fecha_nac.split("-");
+
+                    if (fecha[0].length() == 4) {
+
+                        if (fecha[1].length() == 2 && Integer.parseInt(fecha[1]) >= 01 && Integer.parseInt(fecha[1]) <= 12) {
+
+                            if (fecha[2].length() == 2 && Integer.parseInt(fecha[2]) >= 01 && Integer.parseInt(fecha[2]) <= 31) {
+
+                                ResultSet rs = AlumnosDAO.buscarPorFechaNacDAO(txt_fecha_nac.getText());
+                                mostrarfiltrados(rs);
+
+                            } else {
+                                JOptionPane.showMessageDialog(this, "Sea tan amable de ingresar la fecha en formato (aaaa-mm-dd)");
+                            }
+
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Sea tan amable de ingresar la fecha en formato (aaaa-mm-dd)");
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Sea tan amable de ingresar la fecha en formato (aaaa-mm-dd)");
+                    }
+
+                } else {
+
+                    JOptionPane.showMessageDialog(this, "Sea tan amable de ingresar la fecha en formato (aaaa-mm-dd)");
+
+                }
 
             } catch (SQLException ex) {
 
@@ -391,8 +540,16 @@ public class VentanaConsultaAlumno extends javax.swing.JFrame {
 
             try {
 
-                ResultSet rs = AlumnosDAO.buscarPorSemestreDAO(cmb_semestres.getSelectedItem().toString());
-                mostrarfiltrados(rs);
+                if (!cmb_semestres.getSelectedItem().toString().equals("Seleccione una opcion...")) {
+
+                    ResultSet rs = AlumnosDAO.buscarPorSemestreDAO(cmb_semestres.getSelectedItem().toString());
+                    mostrarfiltrados(rs);
+
+                } else {
+
+                    JOptionPane.showMessageDialog(this, "verifique que seleccion un valor para Semestre");
+
+                }
 
             } catch (SQLException ex) {
 
@@ -403,8 +560,15 @@ public class VentanaConsultaAlumno extends javax.swing.JFrame {
 
             try {
 
-                ResultSet rs = AlumnosDAO.buscarPorCarreraDAO(cmb_carrera.getSelectedItem().toString());
-                mostrarfiltrados(rs);
+                if (!cmb_carrera.getSelectedItem().toString().equals("Seleccione una opcion...")) {
+                    ResultSet rs = AlumnosDAO.buscarPorCarreraDAO(cmb_carrera.getSelectedItem().toString());
+                    mostrarfiltrados(rs);
+
+                } else {
+
+                    JOptionPane.showMessageDialog(this, "verifique que agrego un valor para Carrera");
+
+                }
 
             } catch (SQLException ex) {
 
@@ -421,36 +585,177 @@ public class VentanaConsultaAlumno extends javax.swing.JFrame {
 
         }
 
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaConsultaAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaConsultaAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaConsultaAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaConsultaAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        /* Create and display the form */
+        VentanaHubTutor vht = new VentanaHubTutor();
+        vht.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txt_num_controlKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_num_controlKeyTyped
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c) || txt_num_control.getText().length() >= 8) {
+
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_txt_num_controlKeyTyped
+
+    private void txt_nombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombresKeyTyped
+        char c = evt.getKeyChar();
+
+        if (!Character.isLetter(c) && !Character.isWhitespace(c)) { // Permitir solo letras y espacios
+
+            evt.consume(); // Ignorar el evento
+
+        }    }//GEN-LAST:event_txt_nombresKeyTyped
+
+    private void txt_paternoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_paternoKeyTyped
+        char c = evt.getKeyChar();
+
+        if (!Character.isLetter(c)) { // Permitir solo letras
+
+            evt.consume(); // Ignorar el evento
+
+        }    }//GEN-LAST:event_txt_paternoKeyTyped
+
+    private void txt_maternoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_maternoKeyTyped
+        char c = evt.getKeyChar();
+
+        if (!Character.isLetter(c)) { // Permitir solo letras
+
+            evt.consume(); // Ignorar el evento
+
+        }
+    }//GEN-LAST:event_txt_maternoKeyTyped
+
+    private void txt_fecha_nacKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_fecha_nacKeyTyped
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c) && c != '-' || txt_fecha_nac.getText().length() >= 10) {
+
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_txt_fecha_nacKeyTyped
+
+    private void txt_edadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_edadKeyTyped
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c) || txt_num_telefono.getText().length() >= 10) {
+
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_txt_edadKeyTyped
+
+    private void txt_num_telefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_num_telefonoKeyTyped
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c) || txt_num_telefono.getText().length() >= 10) {
+
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_txt_num_telefonoKeyTyped
+
+    private void jrb_num_controlMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrb_num_controlMouseClicked
+        //txt_nombres.enable(false);
+    }//GEN-LAST:event_jrb_num_controlMouseClicked
+
+    private void jrb_nombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_nombresActionPerformed
+
+        txt_num_control.enable(false);
+        txt_nombres.enable(true);
+        txt_paterno.enable(false);
+        txt_materno.enable(false);
+        txt_fecha_nac.enable(false);
+        txt_edad.enable(false);
+        txt_num_telefono.enable(false);
+        cmb_semestres.enable(false);
+        cmb_carrera.enable(false);
+
+    }//GEN-LAST:event_jrb_nombresActionPerformed
+
+    private void jrb_paternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_paternoActionPerformed
+        txt_num_control.enable(false);
+        txt_nombres.enable(false);
+        txt_paterno.enable(true);
+        txt_materno.enable(false);
+        txt_fecha_nac.enable(false);
+        txt_edad.enable(false);
+        txt_num_telefono.enable(false);
+        cmb_semestres.enable(false);
+        cmb_carrera.enable(false);
+    }//GEN-LAST:event_jrb_paternoActionPerformed
+
+    private void jrb_maternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_maternoActionPerformed
+        txt_num_control.enable(false);
+        txt_nombres.enable(false);
+        txt_paterno.enable(false);
+        txt_materno.enable(true);
+        txt_fecha_nac.enable(false);
+        txt_edad.enable(false);
+        txt_num_telefono.enable(false);
+        cmb_semestres.enable(false);
+        cmb_carrera.enable(false);
+    }//GEN-LAST:event_jrb_maternoActionPerformed
+
+    private void jrb_fecha_nacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_fecha_nacActionPerformed
+        txt_num_control.enable(false);
+        txt_nombres.enable(false);
+        txt_paterno.enable(false);
+        txt_materno.enable(false);
+        txt_fecha_nac.enable(true);
+        txt_edad.enable(false);
+        txt_num_telefono.enable(false);
+        cmb_semestres.enable(false);
+        cmb_carrera.enable(false);
+    }//GEN-LAST:event_jrb_fecha_nacActionPerformed
+
+    private void jrb_edadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_edadActionPerformed
+        txt_num_control.enable(false);
+        txt_nombres.enable(false);
+        txt_paterno.enable(false);
+        txt_materno.enable(false);
+        txt_fecha_nac.enable(false);
+        txt_edad.enable(true);
+        txt_num_telefono.enable(false);
+        cmb_semestres.enable(false);
+        cmb_carrera.enable(false);
+    }//GEN-LAST:event_jrb_edadActionPerformed
+
+    private void jrb_num_telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_num_telefonoActionPerformed
+        txt_num_control.enable(false);
+        txt_nombres.enable(false);
+        txt_paterno.enable(false);
+        txt_materno.enable(false);
+        txt_fecha_nac.enable(false);
+        txt_edad.enable(false);
+        txt_num_telefono.enable(true);
+        cmb_semestres.enable(false);
+        cmb_carrera.enable(false);
+    }//GEN-LAST:event_jrb_num_telefonoActionPerformed
+
+    private void jrb_mostrar_todoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_mostrar_todoActionPerformed
+                txt_num_control.enable(false);
+        txt_nombres.enable(false);
+        txt_paterno.enable(false);
+        txt_materno.enable(false);
+        txt_fecha_nac.enable(false);
+        txt_edad.enable(false);
+        txt_num_telefono.enable(false);
+        cmb_semestres.enable(false);
+        cmb_carrera.enable(false);
+    }//GEN-LAST:event_jrb_mostrar_todoActionPerformed
+
+    public static void main(String args[]) {
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {

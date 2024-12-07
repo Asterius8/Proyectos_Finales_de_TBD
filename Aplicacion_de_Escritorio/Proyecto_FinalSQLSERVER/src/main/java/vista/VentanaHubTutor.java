@@ -75,6 +75,11 @@ public class VentanaHubTutor extends javax.swing.JFrame {
 
         btn_buscar_alumnos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/database_2596172.png"))); // NOI18N
         btn_buscar_alumnos.setText("Buscar");
+        btn_buscar_alumnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscar_alumnosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -115,6 +120,11 @@ public class VentanaHubTutor extends javax.swing.JFrame {
 
         btn_registrar_reporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/notes_768920.png"))); // NOI18N
         btn_registrar_reporte.setText("Registrar");
+        btn_registrar_reporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_registrar_reporteActionPerformed(evt);
+            }
+        });
 
         btn_eliminar_reporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/delete_12319395 (1).png"))); // NOI18N
         btn_eliminar_reporte.setText("Eliminar");
@@ -252,6 +262,24 @@ public class VentanaHubTutor extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btn_editar_alumnosActionPerformed
+
+    private void btn_buscar_alumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscar_alumnosActionPerformed
+
+        try {
+            VentanaConsultaAlumno vca1 = new VentanaConsultaAlumno();
+            vca1.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaHubTutor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btn_buscar_alumnosActionPerformed
+
+    private void btn_registrar_reporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrar_reporteActionPerformed
+
+        
+
+    }//GEN-LAST:event_btn_registrar_reporteActionPerformed
 
     public static void main(String args[]) {
 

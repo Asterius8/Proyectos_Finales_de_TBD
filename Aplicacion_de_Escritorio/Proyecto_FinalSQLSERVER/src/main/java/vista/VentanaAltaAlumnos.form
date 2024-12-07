@@ -140,7 +140,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btn_limpiar_campos" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btn_cancelar" min="-2" pref="75" max="-2" attributes="0"/>
+                  <Component id="btn_cancelar" min="-2" pref="84" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>

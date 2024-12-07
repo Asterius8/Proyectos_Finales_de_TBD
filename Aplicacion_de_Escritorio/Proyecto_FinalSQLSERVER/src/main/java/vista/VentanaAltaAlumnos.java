@@ -209,7 +209,7 @@ public class VentanaAltaAlumnos extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btn_limpiar_campos)
                 .addGap(18, 18, 18)
-                .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
