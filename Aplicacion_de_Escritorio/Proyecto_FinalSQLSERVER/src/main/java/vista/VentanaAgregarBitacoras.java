@@ -24,7 +24,7 @@ public class VentanaAgregarBitacoras extends javax.swing.JFrame {
         txt_fecha_bitacora = new javax.swing.JTextField();
         lbl_observaciones = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txt_observaciones = new javax.swing.JTextArea();
         btn_crear = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
 
@@ -70,9 +70,9 @@ public class VentanaAgregarBitacoras extends javax.swing.JFrame {
         lbl_observaciones.setForeground(new java.awt.Color(255, 255, 255));
         lbl_observaciones.setText("Observaciones:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txt_observaciones.setColumns(20);
+        txt_observaciones.setRows(5);
+        jScrollPane1.setViewportView(txt_observaciones);
 
         btn_crear.setText("Crear");
 
@@ -181,7 +181,6 @@ public class VentanaAgregarBitacoras extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lbl_duracion;
     private javax.swing.JLabel lbl_duracion1;
     private javax.swing.JLabel lbl_fecha_bitacora;
@@ -190,5 +189,6 @@ public class VentanaAgregarBitacoras extends javax.swing.JFrame {
     private javax.swing.JTextField txt_duracion;
     private javax.swing.JTextField txt_fecha_bitacora;
     private javax.swing.JTextField txt_num_control;
+    private javax.swing.JTextArea txt_observaciones;
     // End of variables declaration//GEN-END:variables
 }
