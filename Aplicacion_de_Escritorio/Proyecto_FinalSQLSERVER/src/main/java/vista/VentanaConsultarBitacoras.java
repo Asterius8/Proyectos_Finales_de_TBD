@@ -15,6 +15,8 @@ public class VentanaConsultarBitacoras extends javax.swing.JFrame {
      */
     public VentanaConsultarBitacoras() {
         initComponents();
+        setLocationRelativeTo(null);
+        setTitle("Buscar Bitacoras de Tutorias");
     }
 
     /**
@@ -99,6 +101,11 @@ public class VentanaConsultarBitacoras extends javax.swing.JFrame {
         btn_buscar.setText("Buscar");
 
         btn_cancelar.setText("Cancelar");
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -207,6 +214,12 @@ public class VentanaConsultarBitacoras extends javax.swing.JFrame {
     private void rbn_num_controlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbn_num_controlActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rbn_num_controlActionPerformed
+
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
+        VentanaHubTutor vht = new VentanaHubTutor();
+        vht.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_cancelarActionPerformed
 
     /**
      * @param args the command line arguments

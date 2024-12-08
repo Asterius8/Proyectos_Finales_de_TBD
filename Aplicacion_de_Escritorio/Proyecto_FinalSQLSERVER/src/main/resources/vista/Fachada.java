@@ -5,7 +5,7 @@ import ConexionBD.ConexionBD;
 import static ConexionBD.ConexionBD.getConexion;
 import java.sql.PreparedStatement;
 import Modelo.ReportesTutorias;
-import Controlador.ReporteTutoriaDAO;
+import Controlador.BitacoraDAO;
 
 
 public class Fachada {
@@ -14,14 +14,14 @@ public class Fachada {
     private static Fachada instancia = null;
     private static PreparedStatement pstm;
     private Connection conexion;
-    private ReporteTutoriaDAO rtDAO;
+    private BitacoraDAO rtDAO;
     private ReportesTutorias rt;
 
     //Contructor
     public Fachada() {
 
         this.conexion = ConexionBD.getConexion();
-        this.rtDAO = new ReporteTutoriaDAO();
+        this.rtDAO = new BitacoraDAO();
         this.rt = new ReportesTutorias();
 
     }

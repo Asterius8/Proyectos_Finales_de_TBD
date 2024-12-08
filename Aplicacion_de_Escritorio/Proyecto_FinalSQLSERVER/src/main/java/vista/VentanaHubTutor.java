@@ -127,9 +127,19 @@ public class VentanaHubTutor extends javax.swing.JFrame {
 
         btn_editar_reporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/file_11235591 (1).png"))); // NOI18N
         btn_editar_reporte.setText("Editar");
+        btn_editar_reporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editar_reporteActionPerformed(evt);
+            }
+        });
 
         btn_buscar_reporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/database_2596172.png"))); // NOI18N
         btn_buscar_reporte.setText("Buscar");
+        btn_buscar_reporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscar_reporteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -271,9 +281,27 @@ public class VentanaHubTutor extends javax.swing.JFrame {
 
     private void btn_registrar_reporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrar_reporteActionPerformed
 
-        
+        VentanaAgregarBitacoras vab = new VentanaAgregarBitacoras();
+        vab.setVisible(true);
+        this.dispose();
 
     }//GEN-LAST:event_btn_registrar_reporteActionPerformed
+
+    private void btn_editar_reporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_reporteActionPerformed
+
+        VentanaEditarBitacoras veb = new VentanaEditarBitacoras();
+        veb.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_btn_editar_reporteActionPerformed
+
+    private void btn_buscar_reporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscar_reporteActionPerformed
+        
+        VentanaConsultarBitacoras vcb = new VentanaConsultarBitacoras();
+        vcb.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_btn_buscar_reporteActionPerformed
 
     public static void main(String args[]) {
 

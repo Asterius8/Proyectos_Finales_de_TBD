@@ -98,29 +98,22 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lbl_duracion1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txt_num_control" min="-2" pref="161" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lbl_fecha_bitacora" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbl_duracion" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txt_duracion" min="-2" pref="161" max="-2" attributes="0"/>
-                                      <Component id="txt_fecha_bitacora" min="-2" pref="161" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <Component id="lbl_fecha_bitacora" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl_duracion" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl_duracion1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txt_num_control" min="-2" pref="161" max="-2" attributes="0"/>
+                              <Component id="txt_duracion" min="-2" pref="161" max="-2" attributes="0"/>
+                              <Component id="txt_fecha_bitacora" min="-2" pref="161" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="btn_cancelar" alignment="0" min="-2" pref="129" max="-2" attributes="0"/>
                               <Component id="btn_crear" alignment="0" min="-2" pref="129" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -176,6 +169,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_num_control">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_num_controlKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbl_duracion">
           <Properties>
@@ -185,10 +181,13 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Duracion de la sesion de tutorias: "/>
+            <Property name="text" type="java.lang.String" value="Duracion total de la sesion de tutorias: "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_duracion">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_duracionKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbl_duracion1">
           <Properties>
@@ -202,6 +201,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_fecha_bitacora">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_fecha_bitacoraKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbl_observaciones">
           <Properties>
@@ -233,6 +235,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Crear"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_crearActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btn_cancelar">
           <Properties>

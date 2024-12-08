@@ -1,6 +1,7 @@
 package ConexionBD;
 
 import Modelo.Alumnos;
+import Modelo.Bitacora;
 import Modelo.Usuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -138,6 +139,7 @@ public class ConexionBD {
 
     }
 
+// ABCC de Alumno -----------------------------------------------------------------------------------------------------------------------------------------
     public static boolean agregarAlumno(Alumnos a) {
 
         try {
@@ -187,7 +189,7 @@ public class ConexionBD {
         return null;
     }
 
-// Consultas singulares -----------------------------------------------------------------------------------------------------------------------------------------    
+    // Consultas singulares -----------------------------------------------------------------------------------------------------------------------------------------    
     public static ResultSet buscarPorNumControl(Alumnos a) {
 
         try {
@@ -208,11 +210,7 @@ public class ConexionBD {
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------
-    
-
-    //----------------------------------------------------------------------------------------------------------------------------------------------------------
-// Consultas singulares -----------------------------------------------------------------------------------------------------------------------------------------    
-
+    // Consultas singulares -----------------------------------------------------------------------------------------------------------------------------------------    
     public static ResultSet BuscarNumControlIgual(String consulta) {
 
         try {
@@ -286,6 +284,35 @@ public class ConexionBD {
         } catch (Exception e) {
 
             System.out.println("Error en instrucción DML" + e);
+
+        }
+
+        return false;
+
+    }
+
+// ABCC de Reportes -------------------------------------------------------------------------------------------------------------------------------------------
+    // ALTAS --------------------------------------------------------------------------------------------------------------------------------------------------
+    public static boolean agregarBitacoraBD(Bitacora b) {
+
+        try {
+
+            Connection conexion = getConexion();
+
+            pstm = conexion.prepareStatement("INSERT INTO Bitacoras(fecha_tutorias, duracion_tutorias, observaciones, num_control) VALUES(?,?,?,?)");
+
+            pstm.setString(1, b.getFecha_tutorias());
+            pstm.setInt(2, b.getDuracion_tutorias());
+            pstm.setString(3,b.getObservaciones());
+            pstm.setInt(4, b.getNum_control());
+
+            pstm.execute();
+
+            return true;
+
+        } catch (Exception e) {
+
+            System.out.println("Error en instrucción de agregar bitacora" + e);
 
         }
 

@@ -1,14 +1,20 @@
 package vista;
 
+import Controlador.AlumnosDAO;
+import Controlador.BitacoraDAO;
+import Modelo.Bitacora;
+import javax.swing.JOptionPane;
+
 public class VentanaAgregarBitacoras extends javax.swing.JFrame {
 
     public VentanaAgregarBitacoras() {
-        
+
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Registrar bitacoras de tutorias");
-        
+
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -58,13 +64,31 @@ public class VentanaAgregarBitacoras extends javax.swing.JFrame {
         lbl_fecha_bitacora.setForeground(new java.awt.Color(255, 255, 255));
         lbl_fecha_bitacora.setText("Fecha de la Tutoria (aaaa-mm-dd):");
 
+        txt_num_control.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_num_controlKeyTyped(evt);
+            }
+        });
+
         lbl_duracion.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         lbl_duracion.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_duracion.setText("Duracion de la sesion de tutorias: ");
+        lbl_duracion.setText("Duracion total de la sesion de tutorias: ");
+
+        txt_duracion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_duracionKeyTyped(evt);
+            }
+        });
 
         lbl_duracion1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         lbl_duracion1.setForeground(new java.awt.Color(255, 255, 255));
         lbl_duracion1.setText("Numero de Control del Estudiante:");
+
+        txt_fecha_bitacora.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_fecha_bitacoraKeyTyped(evt);
+            }
+        });
 
         lbl_observaciones.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         lbl_observaciones.setForeground(new java.awt.Color(255, 255, 255));
@@ -75,6 +99,11 @@ public class VentanaAgregarBitacoras extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txt_observaciones);
 
         btn_crear.setText("Crear");
+        btn_crear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_crearActionPerformed(evt);
+            }
+        });
 
         btn_cancelar.setText("Cancelar");
         btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -97,23 +126,19 @@ public class VentanaAgregarBitacoras extends javax.swing.JFrame {
                         .addContainerGap(22, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lbl_duracion1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_num_control, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbl_fecha_bitacora)
-                                    .addComponent(lbl_duracion))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txt_duracion, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_fecha_bitacora, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lbl_fecha_bitacora)
+                            .addComponent(lbl_duracion)
+                            .addComponent(lbl_duracion1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_num_control, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_duracion, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_fecha_bitacora, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn_crear, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(54, 54, 54))))
+                        .addGap(37, 37, 37))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,11 +188,110 @@ public class VentanaAgregarBitacoras extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
-        
+
+        VentanaHubTutor vht = new VentanaHubTutor();
+        vht.setVisible(true);
+        this.dispose();
+
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
+    private void btn_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_crearActionPerformed
+
+        //Verificar el contenido de las cajas 
+        if (!(txt_num_control.getText().equals("")) || !(txt_fecha_bitacora.getText().equals("")) || !(txt_duracion.getText().equals("")) || !(txt_observaciones.getText().equals(""))) {
+
+            int num_control = Integer.parseInt(txt_num_control.getText());
+            String fecha_bitacora = txt_fecha_bitacora.getText();
+            byte duracion = Byte.parseByte(txt_duracion.getText());
+            String observaciones = txt_observaciones.getText();
+            byte contador = 0;
+
+            for (int i = 0; i < fecha_bitacora.length(); i++) {
+
+                if (fecha_bitacora.charAt(i) == '-') {
+
+                    contador++;
+
+                }
+            }
+
+            if (contador == 2) {
+
+                String[] fecha = new String[3];
+                fecha = fecha_bitacora.split("-");
+
+                if (fecha[0].length() == 4
+                        && (fecha[1].length() == 2 && Integer.parseInt(fecha[1]) >= 01 && Integer.parseInt(fecha[1]) <= 12)
+                        && (fecha[2].length() == 2 && Integer.parseInt(fecha[2]) >= 01 && Integer.parseInt(fecha[2]) <= 31)) {
+
+                    if (AlumnosDAO.BuscarNumControlIgualDAO2(String.valueOf(num_control))) {
+
+                        if (BitacoraDAO.agregarBitacoraDAO(new Bitacora(fecha_bitacora, duracion, observaciones, num_control))) {
+
+                            JOptionPane.showMessageDialog(this, "Bitacora agregada correctamente.");
+                            vaciarComponentes();
+                        }
+
+                    } else {
+
+                        JOptionPane.showMessageDialog(this, "No se encontro ningun alumno con ese numero de control.");
+
+                    }//If para verificar que exista el alumno en la BD
+
+                } else {
+
+                    JOptionPane.showMessageDialog(this, "Ingrese la fecha como en la sugerencia.");
+
+                }//If para verificar los 4 digitos de año
+
+            } else {
+
+                JOptionPane.showMessageDialog(this, "Ingrese la fecha como en la sugerencia.");
+
+            }
+
+        }
+
+    }//GEN-LAST:event_btn_crearActionPerformed
+
+    private void txt_num_controlKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_num_controlKeyTyped
+
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c) || txt_num_control.getText().length() >= 8) {
+
+            evt.consume();
+
+        }
+
+    }//GEN-LAST:event_txt_num_controlKeyTyped
+
+    private void txt_fecha_bitacoraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_fecha_bitacoraKeyTyped
+
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c) && c != '-' || txt_fecha_bitacora.getText().length() >= 10) {
+
+            evt.consume();
+
+        }
+
+    }//GEN-LAST:event_txt_fecha_bitacoraKeyTyped
+
+    private void txt_duracionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_duracionKeyTyped
+
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c) || txt_duracion.getText().length() == 1) {
+
+            evt.consume();
+
+        }
+
+    }//GEN-LAST:event_txt_duracionKeyTyped
+
     public static void main(String args[]) {
-       
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VentanaAgregarBitacoras().setVisible(true);
@@ -191,4 +315,14 @@ public class VentanaAgregarBitacoras extends javax.swing.JFrame {
     private javax.swing.JTextField txt_num_control;
     private javax.swing.JTextArea txt_observaciones;
     // End of variables declaration//GEN-END:variables
+
+    public void vaciarComponentes() {
+
+        txt_num_control.setText("");
+        txt_fecha_bitacora.setText("");
+        txt_duracion.setText("");
+        txt_observaciones.setText("");
+
+    }
+
 }
