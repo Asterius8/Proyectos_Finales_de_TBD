@@ -27,9 +27,8 @@ public class VentanaHubTutor extends javax.swing.JFrame {
         btn_editar_alumnos = new javax.swing.JButton();
         btn_buscar_alumnos = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        lbl_seccion_reportes = new javax.swing.JLabel();
+        lbl_seccion_bitacoras = new javax.swing.JLabel();
         btn_registrar_reporte = new javax.swing.JButton();
-        btn_eliminar_reporte = new javax.swing.JButton();
         btn_editar_reporte = new javax.swing.JButton();
         btn_buscar_reporte = new javax.swing.JButton();
         btn_salir = new javax.swing.JButton();
@@ -115,8 +114,8 @@ public class VentanaHubTutor extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 153, 51));
 
-        lbl_seccion_reportes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lbl_seccion_reportes.setText("Reportes");
+        lbl_seccion_bitacoras.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbl_seccion_bitacoras.setText("Bitacoras:");
 
         btn_registrar_reporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/notes_768920.png"))); // NOI18N
         btn_registrar_reporte.setText("Registrar");
@@ -125,9 +124,6 @@ public class VentanaHubTutor extends javax.swing.JFrame {
                 btn_registrar_reporteActionPerformed(evt);
             }
         });
-
-        btn_eliminar_reporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/delete_12319395 (1).png"))); // NOI18N
-        btn_eliminar_reporte.setText("Eliminar");
 
         btn_editar_reporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/file_11235591 (1).png"))); // NOI18N
         btn_editar_reporte.setText("Editar");
@@ -141,27 +137,25 @@ public class VentanaHubTutor extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(19, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(btn_registrar_reporte)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_eliminar_reporte)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_editar_reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_buscar_reporte))
-                    .addComponent(lbl_seccion_reportes))
-                .addGap(17, 17, 17))
+                .addComponent(lbl_seccion_bitacoras)
+                .addGap(421, 421, 421))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(btn_registrar_reporte)
+                .addGap(18, 18, 18)
+                .addComponent(btn_editar_reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_buscar_reporte)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(lbl_seccion_reportes)
+                .addComponent(lbl_seccion_bitacoras)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_registrar_reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_eliminar_reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_editar_reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_buscar_reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(24, Short.MAX_VALUE))
@@ -296,7 +290,6 @@ public class VentanaHubTutor extends javax.swing.JFrame {
     private javax.swing.JButton btn_editar_alumnos;
     private javax.swing.JButton btn_editar_reporte;
     private javax.swing.JButton btn_eliminar_alumnos;
-    private javax.swing.JButton btn_eliminar_reporte;
     private javax.swing.JButton btn_registrar_alumnos;
     private javax.swing.JButton btn_registrar_reporte;
     private javax.swing.JButton btn_salir;
@@ -307,6 +300,6 @@ public class VentanaHubTutor extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_bienvenido;
     private javax.swing.JLabel lbl_intrucciones;
     private javax.swing.JLabel lbl_seccion_alumnos;
-    private javax.swing.JLabel lbl_seccion_reportes;
+    private javax.swing.JLabel lbl_seccion_bitacoras;
     // End of variables declaration//GEN-END:variables
 }
