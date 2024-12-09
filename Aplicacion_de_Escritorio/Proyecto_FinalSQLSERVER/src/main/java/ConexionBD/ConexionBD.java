@@ -369,5 +369,33 @@ public class ConexionBD {
         return null;
     
     }
+    
+    //------------------------------------- Cambios ------------------------------------------
+    public static boolean cambiosBitacoraBD(Bitacora b){
+    
+        try {
+
+            Connection conexion = getConexion();
+
+            pstm = conexion.prepareStatement("UPDATE Bitacoras SET  num_control = ?, fecha_tutorias = ?, duracion_tutorias = ?, observaciones = ? WHERE id_bitacora = " + b.getId_bitacora()+ "");
+
+            pstm.setInt(1, b.getNum_control());
+            pstm.setString(2, b.getFecha_tutorias());
+            pstm.setByte(3, b.getDuracion_tutorias());
+            pstm.setString(4, b.getObservaciones());
+            
+            pstm.execute();
+
+            return true;
+
+        } catch (Exception e) {
+
+            System.out.println("Error en instrucción DML" + e);
+
+        }
+
+        return false;
+        
+    }
 
 }//clase conexion

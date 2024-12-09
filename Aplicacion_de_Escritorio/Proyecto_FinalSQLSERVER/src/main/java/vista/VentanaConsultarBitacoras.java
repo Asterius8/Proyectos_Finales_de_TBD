@@ -24,7 +24,7 @@ public class VentanaConsultarBitacoras extends javax.swing.JFrame {
         txt_fecha_tutoria.enable(false);
         txt_duracion.enable(false);
         txt_observaciones.enable(false);
-        mostrar();
+        mostrar(modelo);
     }
 
     @SuppressWarnings("unchecked")
@@ -495,7 +495,7 @@ public class VentanaConsultarBitacoras extends javax.swing.JFrame {
         } else {
 
             try {
-                mostrar();
+                mostrar(modelo);
             } catch (SQLException ex) {
                 Logger.getLogger(VentanaConsultarBitacoras.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -564,7 +564,7 @@ public class VentanaConsultarBitacoras extends javax.swing.JFrame {
     private javax.swing.JTextArea txt_observaciones;
     // End of variables declaration//GEN-END:variables
 
-    public void mostrar() throws SQLException {
+    public void mostrar(DefaultTableModel modelo) throws SQLException {
 
         ResultSet rs = BitacoraDAO.consultaCompleta();
 

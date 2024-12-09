@@ -1,14 +1,28 @@
-
 package vista;
+
+import Controlador.AlumnosDAO;
+import Controlador.BitacoraDAO;
+import Modelo.Bitacora;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import vista.VentanaConsultarBitacoras;
 
 public class VentanaCambiosBitacoras extends javax.swing.JFrame {
 
-    public VentanaCambiosBitacoras() {
-        
+    DefaultTableModel modelo;
+    int id_bitacora;
+
+    public VentanaCambiosBitacoras() throws SQLException {
+
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Modificar bitacoras de tutorias");
-        
+        modelo = (DefaultTableModel) tbl_bitacoras.getModel();
+        new VentanaConsultarBitacoras().mostrar(modelo);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -30,7 +44,7 @@ public class VentanaCambiosBitacoras extends javax.swing.JFrame {
         btn_modificar = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_bitacoras = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,11 +75,29 @@ public class VentanaCambiosBitacoras extends javax.swing.JFrame {
         lbl_num_control.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbl_num_control.setText("Numero de Control del Alumno:");
 
+        txt_num_control.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_num_controlKeyTyped(evt);
+            }
+        });
+
         lbl_fecha_tutoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbl_fecha_tutoria.setText("Fecha de la Tutoria (aaaa-mm-dd):");
 
+        txt_fecha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_fechaKeyTyped(evt);
+            }
+        });
+
         lbl_duracia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbl_duracia.setText("Duracion de la Sesion de Tutorias: ");
+
+        txt_duracion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_duracionKeyTyped(evt);
+            }
+        });
 
         lbl_observacion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbl_observacion.setText("Obrservacion:");
@@ -75,6 +107,11 @@ public class VentanaCambiosBitacoras extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txt_observaciones);
 
         btn_modificar.setText("Actualizar");
+        btn_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_modificarActionPerformed(evt);
+            }
+        });
 
         btn_cancelar.setText("Cancelar");
         btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -83,18 +120,28 @@ public class VentanaCambiosBitacoras extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_bitacoras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "id_bitacora", "num_control", "fecha_tutorias", "duracion_tutorias", "observaciones"
             }
-        ));
-        jScrollPane2.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbl_bitacoras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_bitacorasMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tbl_bitacoras);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -191,11 +238,146 @@ public class VentanaCambiosBitacoras extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
+    private void txt_num_controlKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_num_controlKeyTyped
+
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c) || txt_num_control.getText().length() >= 8) {
+
+            evt.consume();
+
+        }
+
+    }//GEN-LAST:event_txt_num_controlKeyTyped
+
+    private void txt_fechaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_fechaKeyTyped
+
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c) && c != '-' || txt_fecha.getText().length() >= 10) {
+
+            evt.consume();
+
+        }
+
+    }//GEN-LAST:event_txt_fechaKeyTyped
+
+    private void txt_duracionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_duracionKeyTyped
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c) || txt_duracion.getText().length() == 1) {
+
+            evt.consume();
+
+        }
+
+
+    }//GEN-LAST:event_txt_duracionKeyTyped
+
+    private void tbl_bitacorasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_bitacorasMouseClicked
+
+        id_bitacora = Integer.parseInt(modelo.getValueAt(tbl_bitacoras.getSelectedRow(), 0).toString());
+        txt_num_control.setText(modelo.getValueAt(tbl_bitacoras.getSelectedRow(), 1).toString());
+        txt_fecha.setText(modelo.getValueAt(tbl_bitacoras.getSelectedRow(), 2).toString());
+        txt_duracion.setText(modelo.getValueAt(tbl_bitacoras.getSelectedRow(), 3).toString());
+        txt_observaciones.setText(modelo.getValueAt(tbl_bitacoras.getSelectedRow(), 4).toString());
+
+    }//GEN-LAST:event_tbl_bitacorasMouseClicked
+
+    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
+        if (!(txt_num_control.getText().equals("")) || !(txt_fecha.getText().equals("")) || !(txt_duracion.getText().equals("")) || !(txt_observaciones.getText().equals(""))) {
+
+            int num_control = Integer.parseInt(txt_num_control.getText());
+
+            byte duracion = Byte.parseByte(txt_duracion.getText());
+            String observaciones = txt_observaciones.getText();
+            byte contador = 0;
+            String fecha_bitacora = txt_fecha.getText();
+
+            for (int i = 0; i < fecha_bitacora.length(); i++) {
+
+                if (fecha_bitacora.charAt(i) == '-') {
+
+                    contador++;
+
+                }
+            }
+
+            if (contador == 2) {
+
+                String[] fecha = new String[3];
+                fecha = fecha_bitacora.split("-");
+
+                if (fecha[0].length() == 4
+                        && (fecha[1].length() == 2 && Integer.parseInt(fecha[1]) >= 01 && Integer.parseInt(fecha[1]) <= 12)
+                        && (fecha[2].length() == 2 && Integer.parseInt(fecha[2]) >= 01 && Integer.parseInt(fecha[2]) <= 31)) {
+
+                    if (AlumnosDAO.BuscarNumControlIgualDAO2(String.valueOf(num_control))) {
+
+                        if (BitacoraDAO.ModificiarDAO(new Bitacora(id_bitacora, fecha_bitacora, duracion, observaciones, num_control))) {
+                            try {
+                                new VentanaConsultarBitacoras().mostrar(modelo);
+                            } catch (SQLException ex) {
+                                Logger.getLogger(VentanaCambiosBitacoras.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            JOptionPane.showMessageDialog(this, "Bitacora modificada correctamente.");
+
+                        }
+
+                    } else {
+
+                        JOptionPane.showMessageDialog(this, "No se encontro ningun alumno con ese numero de control.");
+
+                    }//If para verificar que exista el alumno en la BD
+
+                } else {
+
+                    JOptionPane.showMessageDialog(this, "Ingrese la fecha como en la sugerencia.");
+
+                }//If para verificar los 4 digitos de año
+
+            } else {
+
+                JOptionPane.showMessageDialog(this, "Ingrese la fecha como en la sugerencia.");
+
+            }
+
+        }
+    }//GEN-LAST:event_btn_modificarActionPerformed
+
     public static void main(String args[]) {
 
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(VentanaAltaAlumnos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(VentanaAltaAlumnos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(VentanaAltaAlumnos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(VentanaAltaAlumnos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaCambiosBitacoras().setVisible(true);
+                try {
+                    new VentanaCambiosBitacoras().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(VentanaCambiosBitacoras.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -207,12 +389,12 @@ public class VentanaCambiosBitacoras extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lbl_duracia;
     private javax.swing.JLabel lbl_fecha_tutoria;
     private javax.swing.JLabel lbl_num_control;
     private javax.swing.JLabel lbl_observacion;
     private javax.swing.JLabel lbl_titulo;
+    private javax.swing.JTable tbl_bitacoras;
     private javax.swing.JTextField txt_duracion;
     private javax.swing.JTextField txt_fecha;
     private javax.swing.JTextField txt_num_control;

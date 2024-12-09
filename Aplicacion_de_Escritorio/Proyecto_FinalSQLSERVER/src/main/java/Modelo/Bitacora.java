@@ -3,6 +3,7 @@ package Modelo;
 public class Bitacora {
 
     //Atributos
+    private int id_bitacora;
     private String fecha_tutorias;
     private byte duracion_tutorias;
     private String observaciones;
@@ -13,7 +14,17 @@ public class Bitacora {
     }
 
     public Bitacora(String fecha_tutorias, byte duracion_tutorias, String observaciones, int num_control) {
+        this.fecha_tutorias = fecha_tutorias;
+        this.duracion_tutorias = duracion_tutorias;
+        this.observaciones = observaciones;
+        this.num_control = num_control;
+    }
+    
+    
 
+    public Bitacora(int id_bitacora, String fecha_tutorias, byte duracion_tutorias, String observaciones, int num_control) {
+
+        this.id_bitacora = id_bitacora;
         this.fecha_tutorias = fecha_tutorias;
         this.duracion_tutorias = duracion_tutorias;
         this.observaciones = observaciones;
@@ -53,6 +64,15 @@ public class Bitacora {
     public void setNum_control(int num_control) {
         this.num_control = num_control;
     }
+
+    public int getId_bitacora() {
+        return id_bitacora;
+    }
+
+    public void setId_bitacora(int id_bitacora) {
+        this.id_bitacora = id_bitacora;
+    }
+    
     
     
 

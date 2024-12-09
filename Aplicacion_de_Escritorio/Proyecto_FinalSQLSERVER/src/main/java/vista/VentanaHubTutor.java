@@ -289,9 +289,14 @@ public class VentanaHubTutor extends javax.swing.JFrame {
 
     private void btn_editar_reporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_reporteActionPerformed
 
-        VentanaCambiosBitacoras veb = new VentanaCambiosBitacoras();
-        veb.setVisible(true);
-        this.dispose();
+        try {
+            VentanaCambiosBitacoras veb = new VentanaCambiosBitacoras();
+            veb.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaHubTutor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
 
     }//GEN-LAST:event_btn_editar_reporteActionPerformed
 

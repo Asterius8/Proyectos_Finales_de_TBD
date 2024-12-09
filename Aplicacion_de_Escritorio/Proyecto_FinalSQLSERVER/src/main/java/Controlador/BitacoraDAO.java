@@ -3,6 +3,9 @@ package Controlador;
 import ConexionBD.ConexionBD;
 import Modelo.Bitacora;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class BitacoraDAO {
 
@@ -75,4 +78,15 @@ public class BitacoraDAO {
         return rs;
 
     }
+    //------------------------------------- Cambios ------------------------------------------
+    public static boolean ModificiarDAO(Bitacora b) {
+
+        boolean res = false;
+
+        res = ConexionBD.cambiosBitacoraBD(b);
+
+        return res;
+
+    }
+    
 }
