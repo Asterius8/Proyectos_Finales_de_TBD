@@ -5,6 +5,7 @@ import Modelo.Bitacora;
 import java.sql.ResultSet;
 
 public class BitacoraDAO {
+
     //METODOS ---------------------------------------------------------------------------------------------------------------------
     //------------------------------------- Altas ------------------------------------------
     public static boolean agregarBitacoraDAO(Bitacora b) {
@@ -16,12 +17,62 @@ public class BitacoraDAO {
         return res;
 
     }
-    
+
     //------------------------------------- Consultas ------------------------------------------
-    public static ResultSet consultaCompleta(){
-    
-        
-        
+    public static ResultSet consultaCompleta() {
+
+        return ConexionBD.consultarCompletaBitacoraBD();
+
     }
 
+    //------------------------------------- Consultas Especificas ------------------------------------------
+    public static ResultSet buscarPorIdDAO(String filtro) {
+
+        String sql = "SELECT * FROM Bitacoras WHERE id_bitacora ='" + filtro + "'";
+
+        ResultSet rs = ConexionBD.consultaPorFiltroBitacora(sql);
+
+        return rs;
+
+    }
+
+    public static ResultSet buscarPorNumDAO(String filtro) {
+
+        String sql = "SELECT * FROM Bitacoras WHERE num_control ='" + filtro + "'";
+
+        ResultSet rs = ConexionBD.consultaPorFiltroBitacora(sql);
+
+        return rs;
+
+    }
+
+    public static ResultSet buscarPorFechaDAO(String filtro) {
+
+        String sql = "SELECT * FROM Bitacoras WHERE fecha_tutorias ='" + filtro + "'";
+
+        ResultSet rs = ConexionBD.consultaPorFiltroBitacora(sql);
+
+        return rs;
+
+    }
+
+    public static ResultSet buscarPorDuracionDAO(String filtro) {
+
+        String sql = "SELECT * FROM Bitacoras WHERE duracion_tutorias ='" + filtro + "'";
+
+        ResultSet rs = ConexionBD.consultaPorFiltroBitacora(sql);
+
+        return rs;
+
+    }
+
+    public static ResultSet buscarPorObservacionesDAO(String filtro) {
+
+        String sql = "SELECT * FROM Bitacoras WHERE observaciones ='" + filtro + "'";
+
+        ResultSet rs = ConexionBD.consultaPorFiltroBitacora(sql);
+
+        return rs;
+
+    }
 }

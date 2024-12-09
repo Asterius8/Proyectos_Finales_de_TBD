@@ -247,16 +247,16 @@ public class VentanaHubTutor extends javax.swing.JFrame {
         try {
             vba = new VentanaBajaAlumnos();
             vba.setVisible(true);
-        this.dispose();
+            this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(VentanaHubTutor.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
 
     }//GEN-LAST:event_btn_eliminar_alumnosActionPerformed
 
     private void btn_editar_alumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_alumnosActionPerformed
-        
+
         try {
             VentanaCambiosAlumnos vca = new VentanaCambiosAlumnos();
             vca.setVisible(true);
@@ -264,7 +264,7 @@ public class VentanaHubTutor extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(VentanaHubTutor.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_btn_editar_alumnosActionPerformed
 
     private void btn_buscar_alumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscar_alumnosActionPerformed
@@ -289,17 +289,22 @@ public class VentanaHubTutor extends javax.swing.JFrame {
 
     private void btn_editar_reporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_reporteActionPerformed
 
-        VentanaEditarBitacoras veb = new VentanaEditarBitacoras();
+        VentanaCambiosBitacoras veb = new VentanaCambiosBitacoras();
         veb.setVisible(true);
         this.dispose();
 
     }//GEN-LAST:event_btn_editar_reporteActionPerformed
 
     private void btn_buscar_reporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscar_reporteActionPerformed
-        
-        VentanaConsultarBitacoras vcb = new VentanaConsultarBitacoras();
-        vcb.setVisible(true);
-        this.dispose();
+
+        try {
+            VentanaConsultarBitacoras vcb = new VentanaConsultarBitacoras();
+            vcb.setVisible(true);
+            this.dispose();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaHubTutor.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_btn_buscar_reporteActionPerformed
 

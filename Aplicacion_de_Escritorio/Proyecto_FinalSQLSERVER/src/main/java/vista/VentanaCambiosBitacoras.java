@@ -1,9 +1,9 @@
 
 package vista;
 
-public class VentanaEditarBitacoras extends javax.swing.JFrame {
+public class VentanaCambiosBitacoras extends javax.swing.JFrame {
 
-    public VentanaEditarBitacoras() {
+    public VentanaCambiosBitacoras() {
         
         initComponents();
         setLocationRelativeTo(null);
@@ -195,7 +195,7 @@ public class VentanaEditarBitacoras extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaEditarBitacoras().setVisible(true);
+                new VentanaCambiosBitacoras().setVisible(true);
             }
         });
     }

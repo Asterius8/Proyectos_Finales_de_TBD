@@ -303,7 +303,7 @@ public class ConexionBD {
 
             pstm.setString(1, b.getFecha_tutorias());
             pstm.setInt(2, b.getDuracion_tutorias());
-            pstm.setString(3,b.getObservaciones());
+            pstm.setString(3, b.getObservaciones());
             pstm.setInt(4, b.getNum_control());
 
             pstm.execute();
@@ -318,6 +318,56 @@ public class ConexionBD {
 
         return false;
 
+    }
+
+    // CONSULTAS ----------------------------------------------------------------------------------------------------------------------------------------------
+    public static ResultSet consultarCompletaBitacoraBD() {
+
+        try {
+
+            Connection conexion = getConexion();
+            String sentencia = "SELECT * FROM Bitacoras";
+
+            Statement st = conexion.createStatement();
+
+            ResultSet rs = st.executeQuery(sentencia);
+
+            return rs;
+
+        } catch (Exception e) {
+
+            System.out.println("Error en instrucción de busqueda de bitacoras" + e);
+
+        }
+
+        return null;
+
+    }
+    //------------------------------------- Consultas Especificas ------------------------------------------
+    public static ResultSet consultaPorFiltroBitacora(String consulta){
+    
+         try {
+
+            Connection conexion = getConexion();
+
+            if (conexion != null) {
+
+                PreparedStatement pstm = conexion.prepareStatement(consulta);
+
+                return pstm.executeQuery();
+
+            } else {
+
+                System.out.println("Error: No se pudo obtener la conexión a la base de datos.");
+
+            }
+        } catch (SQLException e) {
+
+            System.out.println("Error en instrucción SQL a nivel conexion BD");
+
+        }
+        return null;
+    
     }
 
 }//clase conexion

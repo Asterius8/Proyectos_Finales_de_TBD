@@ -201,10 +201,11 @@ public class VentanaAgregarBitacoras extends javax.swing.JFrame {
         if (!(txt_num_control.getText().equals("")) || !(txt_fecha_bitacora.getText().equals("")) || !(txt_duracion.getText().equals("")) || !(txt_observaciones.getText().equals(""))) {
 
             int num_control = Integer.parseInt(txt_num_control.getText());
-            String fecha_bitacora = txt_fecha_bitacora.getText();
+
             byte duracion = Byte.parseByte(txt_duracion.getText());
             String observaciones = txt_observaciones.getText();
             byte contador = 0;
+            String fecha_bitacora = txt_fecha_bitacora.getText();
 
             for (int i = 0; i < fecha_bitacora.length(); i++) {
 
