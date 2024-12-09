@@ -1,0 +1,261 @@
+<!-- Created with Jaspersoft Studio version 7.0.1.final using JasperReports Library version 7.0.1-573496633c2b4074e32f433154b543003f7d2498  -->
+<jasperReport name="coso" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a65a41ec-67a4-4bd6-8386-819264b93db1">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SQLServerConnection"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#C8FCC7">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#EBF4FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<dataset name="Bitacoras" uuid="b7813cf3-4222-4340-a45e-eadabf73bc5d">
+		<property name="com.jaspersoft.studio.data.sql.tables" value="IkJpdGFjb3JhcyIgLDE1LDc5LDBlNDNmYjBmLTEyOGQtNGU4MC04YmZiLTcxYmIwYjM2N2U5MTsi&#xa;QWx1bW5vcyIgLDIwMiwxNSwzZjE2NmNkYS1mZjlmLTRhZjItYWNiMC1jMzhjZjFlMDk1MmU7"/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SQLServerConnection"/>
+		<query language="SQL"><![CDATA[SELECT b.id_bitacora,
+	b.num_control,
+	a.nombre_alumno,
+	a.carrera,
+	b.fecha_tutorias,
+	b.duracion_tutorias,
+	b.observaciones
+FROM "Bitacoras" b
+	INNER JOIN "Alumnos" a ON 
+	 b.num_control = a.num_control]]></query>
+		<field name="id_bitacora" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="id_bitacora"/>
+			<property name="com.jaspersoft.studio.field.label" value="id_bitacora"/>
+		</field>
+		<field name="num_control" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="num_control"/>
+			<property name="com.jaspersoft.studio.field.label" value="num_control"/>
+		</field>
+		<field name="nombre_alumno" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="nombre_alumno"/>
+			<property name="com.jaspersoft.studio.field.label" value="nombre_alumno"/>
+		</field>
+		<field name="carrera" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="carrera"/>
+			<property name="com.jaspersoft.studio.field.label" value="carrera"/>
+		</field>
+		<field name="fecha_tutorias" class="java.sql.Date">
+			<property name="com.jaspersoft.studio.field.name" value="fecha_tutorias"/>
+			<property name="com.jaspersoft.studio.field.label" value="fecha_tutorias"/>
+		</field>
+		<field name="duracion_tutorias" class="java.lang.Short">
+			<property name="com.jaspersoft.studio.field.name" value="duracion_tutorias"/>
+			<property name="com.jaspersoft.studio.field.label" value="duracion_tutorias"/>
+		</field>
+		<field name="observaciones" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="observaciones"/>
+			<property name="com.jaspersoft.studio.field.label" value="observaciones"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="Bitacoras"/>
+		</field>
+		<group name="id_bitacora">
+			<expression><![CDATA[$F{id_bitacora}]]></expression>
+		</group>
+		<group name="num_control">
+			<expression><![CDATA[$F{num_control}]]></expression>
+		</group>
+		<group name="nombre_alumno">
+			<expression><![CDATA[$F{nombre_alumno}]]></expression>
+		</group>
+		<group name="carrera">
+			<expression><![CDATA[$F{carrera}]]></expression>
+		</group>
+		<group name="fecha_tutorias">
+			<expression><![CDATA[$F{fecha_tutorias}]]></expression>
+		</group>
+		<group name="duracion_tutorias">
+			<expression><![CDATA[$F{duracion_tutorias}]]></expression>
+		</group>
+		<group name="observaciones">
+			<expression><![CDATA[$F{observaciones}]]></expression>
+		</group>
+	</dataset>
+	<query language="SQL"><![CDATA[SELECT 
+    b.id_bitacora, 
+	    b.num_control,
+	a.nombre_alumno, 
+    a.carrera,
+    b.fecha_tutorias, 
+    b.duracion_tutorias, 
+    b.observaciones
+
+FROM 
+    Bitacoras b
+INNER JOIN 
+    Alumnos a ON b.num_control = a.num_control]]></query>
+	<field name="id_bitacora" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id_bitacora"/>
+		<property name="com.jaspersoft.studio.field.label" value="id_bitacora"/>
+	</field>
+	<field name="num_control" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="num_control"/>
+		<property name="com.jaspersoft.studio.field.label" value="num_control"/>
+	</field>
+	<field name="nombre_alumno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre_alumno"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre_alumno"/>
+	</field>
+	<field name="carrera" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="carrera"/>
+		<property name="com.jaspersoft.studio.field.label" value="carrera"/>
+	</field>
+	<field name="fecha_tutorias" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_tutorias"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_tutorias"/>
+	</field>
+	<field name="duracion_tutorias" class="java.lang.Short">
+		<property name="com.jaspersoft.studio.field.name" value="duracion_tutorias"/>
+		<property name="com.jaspersoft.studio.field.label" value="duracion_tutorias"/>
+	</field>
+	<field name="observaciones" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="observaciones"/>
+		<property name="com.jaspersoft.studio.field.label" value="observaciones"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Bitacoras"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="109" splitType="Stretch">
+		<element kind="staticText" uuid="a191b7de-8527-4431-892d-d1daccfb1d1a" x="130" y="20" width="350" height="55" fontSize="25.0" bold="true" hTextAlign="Left">
+			<text><![CDATA[Reporte de Bitacoras]]></text>
+		</element>
+		<element kind="line" uuid="cbb4a025-ab74-470b-be9a-2dbc97482601" x="3" y="79" width="557" height="1"/>
+		<element kind="textField" uuid="63b39f0f-1847-4ce5-a8db-f590d51589a7" x="450" y="50" width="100" height="30" pattern="MMMMM dd, yyyy">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+	</title>
+	<pageHeader height="35" splitType="Stretch"/>
+	<detail>
+		<band height="477" splitType="Stretch">
+			<element kind="component" uuid="5e1e91db-41d1-4b86-8548-dfc213c95b56" x="3" y="0" width="557" height="70" style="Table_TH">
+				<component kind="table">
+					<datasetRun uuid="6e33e256-5405-4440-a95e-654253c967a9" subDataset="Bitacoras"/>
+					<column kind="single" uuid="254a2376-e4e2-4dae-8305-45ed3c040b73" width="28">
+						<columnHeader height="40" style="Table_CH">
+							<element kind="staticText" uuid="77dcf1c2-b757-4aa3-8633-cf027294d6ec" x="0" y="0" width="28" height="40" hTextAlign="Center">
+								<text><![CDATA[Id]]></text>
+							</element>
+						</columnHeader>
+						<detailCell height="30" style="Table_TD">
+							<element kind="textField" uuid="7b51732a-0088-4708-84ba-6fabdee6832b" x="0" y="0" width="28" height="30" hTextAlign="Center" vTextAlign="Middle">
+								<expression><![CDATA[$F{id_bitacora}]]></expression>
+							</element>
+						</detailCell>
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+					</column>
+					<column kind="single" uuid="a482d5e6-2002-4bda-bd39-a17d0a885c7a" width="62">
+						<columnHeader height="40" style="Table_CH">
+							<element kind="staticText" uuid="cd76c111-e6fc-4ef8-bb7c-089dd7f3e020" x="0" y="0" width="62" height="40" hTextAlign="Center">
+								<text><![CDATA[Numero de control]]></text>
+							</element>
+						</columnHeader>
+						<detailCell height="30" style="Table_TD">
+							<element kind="textField" uuid="a8fe7f65-f548-46d0-b8b2-fdb2028a5c32" x="0" y="0" width="62" height="30" hTextAlign="Center" vTextAlign="Middle">
+								<expression><![CDATA[$F{num_control}]]></expression>
+							</element>
+						</detailCell>
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+					</column>
+					<column kind="single" uuid="c47f0134-4326-411d-9378-10e5782f7bc9" width="60">
+						<columnHeader height="40" style="Table_CH">
+							<element kind="staticText" uuid="ff5460b3-c310-4b82-94cf-f1aa2daf0ace" x="0" y="0" width="60" height="40" hTextAlign="Center">
+								<text><![CDATA[Nombre]]></text>
+							</element>
+						</columnHeader>
+						<detailCell height="30" style="Table_TD">
+							<element kind="textField" uuid="1d86215a-9fcd-4897-84a4-bd7bd741280f" x="0" y="0" width="60" height="30" hTextAlign="Center" vTextAlign="Middle">
+								<expression><![CDATA[$F{nombre_alumno}]]></expression>
+							</element>
+						</detailCell>
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+					</column>
+					<column kind="single" uuid="fe8ebc62-f1af-49d0-a905-da145399483d" width="40">
+						<columnHeader height="40" style="Table_CH">
+							<element kind="staticText" uuid="e97b8691-482b-429a-8ded-be136d6e0353" x="0" y="0" width="40" height="40" hTextAlign="Center">
+								<text><![CDATA[Carrera]]></text>
+							</element>
+						</columnHeader>
+						<detailCell height="30" style="Table_TD">
+							<element kind="textField" uuid="c898cd07-895b-4e0c-8ed6-6462738c42ac" x="0" y="0" width="40" height="30" hTextAlign="Center" vTextAlign="Middle">
+								<expression><![CDATA[$F{carrera}]]></expression>
+							</element>
+						</detailCell>
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
+					</column>
+					<column kind="single" uuid="9bddb736-fa51-4fc4-9432-e433fb626643" width="50">
+						<columnHeader height="40" style="Table_CH">
+							<element kind="staticText" uuid="9e031452-e743-42fb-bea6-032e16e86149" x="0" y="0" width="50" height="40" hTextAlign="Center">
+								<text><![CDATA[Fecha]]></text>
+							</element>
+						</columnHeader>
+						<detailCell height="30" style="Table_TD">
+							<element kind="textField" uuid="76086f69-e174-4b8e-b9f6-2d0ebb0452a8" x="0" y="0" width="50" height="30" hTextAlign="Center" vTextAlign="Middle">
+								<expression><![CDATA[$F{fecha_tutorias}]]></expression>
+							</element>
+						</detailCell>
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
+					</column>
+					<column kind="single" uuid="0905331b-1738-4e92-bf5b-533f2b85cf46" width="100">
+						<columnHeader height="40" style="Table_CH">
+							<element kind="staticText" uuid="775aa3f4-23ab-4cb9-8f65-ca5741e8a4d5" x="0" y="0" width="100" height="40" hTextAlign="Center">
+								<text><![CDATA[Duracion
+de
+Tutorias]]></text>
+							</element>
+						</columnHeader>
+						<detailCell height="30" style="Table_TD">
+							<element kind="textField" uuid="04a1550f-a454-4f78-81a7-0c18c06fb2ca" x="0" y="0" width="100" height="30" hTextAlign="Center" vTextAlign="Middle">
+								<expression><![CDATA[$F{duracion_tutorias}]]></expression>
+							</element>
+						</detailCell>
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column6"/>
+					</column>
+					<column kind="single" uuid="802b8a94-7195-4122-a6db-851146cf6032" width="217">
+						<columnHeader height="40" style="Table_CH">
+							<element kind="staticText" uuid="7370a7fd-e309-4690-85ad-c14c2580f65c" x="0" y="0" width="217" height="40" hTextAlign="Center">
+								<text><![CDATA[observaciones]]></text>
+							</element>
+						</columnHeader>
+						<detailCell height="30" style="Table_TD">
+							<element kind="textField" uuid="ff4e7853-d5cc-412d-8683-1f5c771d80a7" x="0" y="0" width="217" height="30" hTextAlign="Center" vTextAlign="Middle">
+								<expression><![CDATA[$F{observaciones}]]></expression>
+							</element>
+						</detailCell>
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column7"/>
+					</column>
+				</component>
+				<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+				<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+				<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+				<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+				<property name="com.jaspersoft.studio.components.autoresize.next" value="true"/>
+			</element>
+		</band>
+	</detail>
+	<summary height="63" splitType="Stretch">
+		<element kind="textField" uuid="8d770999-b995-4d29-b3f4-77f2905f5606" x="450" y="20" width="100" height="30">
+			<expression><![CDATA[$V{PAGE_NUMBER}]]></expression>
+		</element>
+	</summary>
+</jasperReport>

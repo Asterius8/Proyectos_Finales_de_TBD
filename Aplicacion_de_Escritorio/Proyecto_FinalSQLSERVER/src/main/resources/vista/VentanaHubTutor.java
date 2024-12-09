@@ -1,5 +1,9 @@
 package vista;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class VentanaHubTutor extends javax.swing.JFrame {
 
     public VentanaHubTutor() {
@@ -14,105 +18,197 @@ public class VentanaHubTutor extends javax.swing.JFrame {
 
         jMenu1 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        lbl_bienvenido = new javax.swing.JLabel();
+        lbl_intrucciones = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        lbl_seccion_alumnos = new javax.swing.JLabel();
+        btn_registrar_alumnos = new javax.swing.JButton();
+        btn_eliminar_alumnos = new javax.swing.JButton();
+        btn_editar_alumnos = new javax.swing.JButton();
+        btn_buscar_alumnos = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        lbl_seccion_bitacoras = new javax.swing.JLabel();
+        btn_registrar_reporte = new javax.swing.JButton();
+        btn_editar_reporte = new javax.swing.JButton();
+        btn_buscar_reporte = new javax.swing.JButton();
+        btn_salir = new javax.swing.JButton();
 
         jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Bienvenido");
+        lbl_bienvenido.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        lbl_bienvenido.setText("Bienvenido");
 
-        jLabel2.setText("Seleccione que desea realizar de los siguiente apartados");
+        lbl_intrucciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbl_intrucciones.setText("Seleccione accion desea realizar:");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setText("Alumnos:");
+        jPanel2.setBackground(new java.awt.Color(0, 204, 0));
 
-        jButton1.setText("Registrar");
+        lbl_seccion_alumnos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbl_seccion_alumnos.setText("Alumnos:");
 
-        jButton2.setText("Eliminar");
+        btn_registrar_alumnos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/notes_768920.png"))); // NOI18N
+        btn_registrar_alumnos.setText("Registrar");
+        btn_registrar_alumnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_registrar_alumnosActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Editar");
+        btn_eliminar_alumnos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/delete_12319395 (1).png"))); // NOI18N
+        btn_eliminar_alumnos.setText("Eliminar");
+        btn_eliminar_alumnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminar_alumnosActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Buscar");
+        btn_editar_alumnos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/file_11235591 (1).png"))); // NOI18N
+        btn_editar_alumnos.setText("Editar");
+        btn_editar_alumnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editar_alumnosActionPerformed(evt);
+            }
+        });
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setText("Registros");
+        btn_buscar_alumnos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/database_2596172.png"))); // NOI18N
+        btn_buscar_alumnos.setText("Buscar");
+        btn_buscar_alumnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscar_alumnosActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("Registrar");
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btn_registrar_alumnos)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_eliminar_alumnos)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_editar_alumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_buscar_alumnos))
+                    .addComponent(lbl_seccion_alumnos))
+                .addGap(16, 16, 16))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(lbl_seccion_alumnos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_registrar_alumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_eliminar_alumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_editar_alumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_buscar_alumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
 
-        jButton6.setText("Eliminar");
+        jPanel3.setBackground(new java.awt.Color(255, 153, 51));
 
-        jButton7.setText("Editar");
+        lbl_seccion_bitacoras.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbl_seccion_bitacoras.setText("Bitacoras:");
 
-        jButton8.setText("Buscar");
+        btn_registrar_reporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/notes_768920.png"))); // NOI18N
+        btn_registrar_reporte.setText("Registrar");
+        btn_registrar_reporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_registrar_reporteActionPerformed(evt);
+            }
+        });
+
+        btn_editar_reporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/file_11235591 (1).png"))); // NOI18N
+        btn_editar_reporte.setText("Editar");
+        btn_editar_reporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editar_reporteActionPerformed(evt);
+            }
+        });
+
+        btn_buscar_reporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/database_2596172.png"))); // NOI18N
+        btn_buscar_reporte.setText("Buscar");
+        btn_buscar_reporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscar_reporteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addComponent(lbl_seccion_bitacoras)
+                .addGap(421, 421, 421))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(btn_registrar_reporte)
+                .addGap(18, 18, 18)
+                .addComponent(btn_editar_reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_buscar_reporte)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(lbl_seccion_bitacoras)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_registrar_reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_editar_reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_buscar_reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
+        btn_salir.setText("Salir");
+        btn_salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(17, Short.MAX_VALUE))
+                    .addComponent(lbl_intrucciones)
+                    .addComponent(lbl_bienvenido))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jLabel1)
+                .addComponent(lbl_bienvenido)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addComponent(lbl_intrucciones)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -129,6 +225,94 @@ public class VentanaHubTutor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_registrar_alumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrar_alumnosActionPerformed
+
+        VentanaAltaAlumnos vaa = new VentanaAltaAlumnos();
+        vaa.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_btn_registrar_alumnosActionPerformed
+
+    private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
+
+        VentanaLoginTutor vlt = new VentanaLoginTutor();
+        vlt.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_btn_salirActionPerformed
+
+    private void btn_eliminar_alumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminar_alumnosActionPerformed
+
+        VentanaBajaAlumnos vba;
+        try {
+            vba = new VentanaBajaAlumnos();
+            vba.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaHubTutor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_btn_eliminar_alumnosActionPerformed
+
+    private void btn_editar_alumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_alumnosActionPerformed
+
+        try {
+            VentanaCambiosAlumnos vca = new VentanaCambiosAlumnos();
+            vca.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaHubTutor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btn_editar_alumnosActionPerformed
+
+    private void btn_buscar_alumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscar_alumnosActionPerformed
+
+        try {
+            VentanaConsultaAlumno vca1 = new VentanaConsultaAlumno();
+            vca1.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaHubTutor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btn_buscar_alumnosActionPerformed
+
+    private void btn_registrar_reporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrar_reporteActionPerformed
+
+        VentanaAgregarBitacoras vab = new VentanaAgregarBitacoras();
+        vab.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_btn_registrar_reporteActionPerformed
+
+    private void btn_editar_reporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_reporteActionPerformed
+
+        try {
+            VentanaCambiosBitacoras veb = new VentanaCambiosBitacoras();
+            veb.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaHubTutor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_btn_editar_reporteActionPerformed
+
+    private void btn_buscar_reporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscar_reporteActionPerformed
+
+        try {
+            VentanaConsultarBitacoras vcb = new VentanaConsultarBitacoras();
+            vcb.setVisible(true);
+            this.dispose();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaHubTutor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btn_buscar_reporteActionPerformed
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -139,19 +323,21 @@ public class VentanaHubTutor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton btn_buscar_alumnos;
+    private javax.swing.JButton btn_buscar_reporte;
+    private javax.swing.JButton btn_editar_alumnos;
+    private javax.swing.JButton btn_editar_reporte;
+    private javax.swing.JButton btn_eliminar_alumnos;
+    private javax.swing.JButton btn_registrar_alumnos;
+    private javax.swing.JButton btn_registrar_reporte;
+    private javax.swing.JButton btn_salir;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lbl_bienvenido;
+    private javax.swing.JLabel lbl_intrucciones;
+    private javax.swing.JLabel lbl_seccion_alumnos;
+    private javax.swing.JLabel lbl_seccion_bitacoras;
     // End of variables declaration//GEN-END:variables
 }

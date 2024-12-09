@@ -121,16 +121,6 @@ public class AlumnosDAO {
         return rs;
 
     }
-    
-    public static ResultSet ContarCarreraDAO(){
-    
-        String sql = "SELECT carrera, COUNT(*) AS cantidad FROM Alumnos GROUP BY carrera";
-            
-        ResultSet rs = ConexionBD.ContarCarreraBD(sql);
-            
-        return rs;
-        
-    }
 
     //------------------- CONSULTAS -----------------------------------------------------------------------------------------------------------------------------
     public static boolean BuscarNumControlIgualDAO(String filtro1) {

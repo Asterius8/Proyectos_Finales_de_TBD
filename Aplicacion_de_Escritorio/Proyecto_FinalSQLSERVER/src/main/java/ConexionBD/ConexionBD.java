@@ -397,5 +397,31 @@ public class ConexionBD {
         return false;
         
     }
+    
+    public static ResultSet ContarCarreraBD(String consulta){
+    
+         try {
+
+            Connection conexion = getConexion();
+
+            if (conexion != null) {
+
+                PreparedStatement pstm = conexion.prepareStatement(consulta);
+
+                return pstm.executeQuery();
+
+            } else {
+
+                System.out.println("Error: No se pudo obtener la conexión a la base de datos.");
+
+            }
+        } catch (SQLException e) {
+
+            System.out.println("Error en instrucción SQL a nivel conexion BD");
+
+        }
+        return null;
+        
+    }
 
 }//clase conexion
