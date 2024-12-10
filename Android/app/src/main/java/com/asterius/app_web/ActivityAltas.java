@@ -1,7 +1,6 @@
 package com.asterius.app_web;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -10,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 
 public class ActivityAltas extends AppCompatActivity {
 
@@ -34,8 +34,6 @@ public class ActivityAltas extends AppCompatActivity {
         String [] carreras = {"Seleccione una opcion...","ISC", "IM", "IIA", "CP", "LA"};
         ArrayAdapter<String> adapterCarreras = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, carreras);
         carrera.setAdapter(adapterCarreras);
-
-
 
     }
 
@@ -68,25 +66,40 @@ public class ActivityAltas extends AppCompatActivity {
 
                         if (fechaArray[2].length() == 2 && Integer.parseInt(fechaArray[2]) >= 1 && Integer.parseInt(fechaArray[2]) <= 31) {
 
-                            fachada.agregarBitacora(Integer.parseInt((id_bi.getText().toString())), nombre_es.getText().toString(), paterno.getText().toString(), materno.getText().toString(), carrera.getSelectedItem().toString(), fecha.getText().toString());
+                            new Thread(() -> {
 
-                            Toast.makeText(this,"Agregacion exitosa", Toast.LENGTH_LONG).show();
+                            if(fachada.verificarUnicaExistencia(id_bi.getText().toString()).size() == 0){
+
+                                fachada.agregarBitacora(Integer.parseInt((id_bi.getText().toString())), nombre_es.getText().toString(), paterno.getText().toString(), materno.getText().toString(), carrera.getSelectedItem().toString(), fecha.getText().toString());
+                                runOnUiThread(() -> {
+                                Toast.makeText(this,"Agregacion exitosa", Toast.LENGTH_LONG).show();
+                                });
+
+                            }else {
+
+                                runOnUiThread(() -> {
+                                Toast.makeText(this,"Numero de control repetido", Toast.LENGTH_LONG).show();
+                                });
+
+                            }
+
+                            }).start();
 
                         }else{
 
-                            Toast.makeText(this,"Verifique la fecha", Toast.LENGTH_LONG).show();
+                            Toast.makeText(this,"Verifique los dias ingresados", Toast.LENGTH_LONG).show();
 
                         }
 
                     }else {
 
-                        Toast.makeText(this,"Verifique la fecha", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this,"Verifique los meses ingresados", Toast.LENGTH_LONG).show();
 
                     }
 
                 }else{
 
-                    Toast.makeText(this,"Verifique la fecha", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,"Verifique los años ingresados", Toast.LENGTH_LONG).show();
 
                 }
 
