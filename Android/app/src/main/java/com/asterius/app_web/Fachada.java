@@ -29,23 +29,55 @@ public class Fachada {
             @Override
             public void run() {
                 try {
-                    // Insertar alumno en la base de datos
+
                     bd.bitacorasDAO().agregarBitacora(new Bitacoras(id_bi, nombre_es, paterno, materno, carrera, fecha));
 
-                    // Log para depuración
-                    Log.i("MSJ->", "Insertado correctamente");
+
                 } catch (Exception e) {
-                    // Manejar errores si es necesario
+
                     Log.e("MSJ->", "Error al insertar alumno: " + e.getMessage());
+
                 }
 
             }
         }).start();
 
     }
+//------------- BAJAS --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    public void borrarBitacora(String filtro){
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+
+                    bd.bitacorasDAO().eliminarBitacorasPorId(filtro);
+
+
+                } catch (Exception e) {
+
+                    Log.e("MSJ->", "Error al insertar alumno: " + e.getMessage());
+
+                }
+
+            }
+        }).start();
+
+
+    }
 
 //------------- CONSULTAS --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+    public ArrayList<Bitacoras> consultaCompleta(){
+
+        ArrayList<Bitacoras> datos;
+
+        datos = (ArrayList<Bitacoras>) bd.bitacorasDAO().mostarTodos();
+
+        return datos;
+
+    }
     public ArrayList<Bitacoras> verificarUnicaExistencia(String filtro) {
 
         ArrayList<Bitacoras> datos;

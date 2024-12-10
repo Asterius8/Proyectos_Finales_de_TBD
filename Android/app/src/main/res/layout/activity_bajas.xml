@@ -12,7 +12,7 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="45dp"
         android:fontFamily="@font/aclonica"
-        android:text="Eliminar Alumno"
+        android:text="Eliminar Bitacora"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,19 +21,19 @@
         android:id="@+id/lbl_intrucciones_b"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="76dp"
-        android:text="Ingrese el numero de control del alumno\nque desea eliminar: "
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="44dp"
+        android:text="Ingrese el id de la bitacora que desea eliminar: "
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_bajas_alumno" />
 
     <EditText
-        android:id="@+id/txt_num_control_b"
+        android:id="@+id/txt_id_bi_b"
         android:layout_width="358dp"
         android:layout_height="50dp"
-        android:layout_marginTop="37dp"
-        android:layout_marginEnd="19dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Numero de Control"
         android:inputType="number"
@@ -44,28 +44,20 @@
         android:id="@+id/btn_limpiar_b"
         android:layout_width="129dp"
         android:layout_height="57dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="19dp"
-        android:text="Limpiar"
-        app:layout_constraintEnd_toStartOf="@+id/btn_cancelar_b"
-        app:layout_constraintTop_toBottomOf="@+id/txt_num_control_b" />
-
-    <Button
-        android:id="@+id/btn_cancelar_b"
-        android:layout_width="129dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="59dp"
-        android:text="Cancelar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_num_control_b" />
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="36dp"
+        android:onClick="deshacerEliminacion"
+        android:text="Deshacer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_id_bi_b" />
 
     <Button
         android:id="@+id/btn_eliminar_b"
-        android:layout_width="278dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="58dp"
+        android:layout_width="129dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="132dp"
+        android:onClick="eliminarBitacora"
         android:text="Eliminar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_limpiar_b" />
