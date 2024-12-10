@@ -56,6 +56,7 @@
                 android:hint="Numero de bitacora"
                 android:inputType="number"
                 app:layout_constraintStart_toStartOf="parent"
+                android:maxLength="8"
                 app:layout_constraintTop_toBottomOf="@+id/lbl_instrucciones_a" />
 
             <EditText
@@ -110,10 +111,12 @@
                 android:id="@+id/btn_registrar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="143dp"
                 android:layout_marginTop="36dp"
+                android:onClick="agregarBitacora"
                 android:text="Registrar"
-                app:layout_constraintTop_toBottomOf="@+id/spn_carrera_a"
-                tools:layout_editor_absoluteX="143dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spn_carrera_a" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
