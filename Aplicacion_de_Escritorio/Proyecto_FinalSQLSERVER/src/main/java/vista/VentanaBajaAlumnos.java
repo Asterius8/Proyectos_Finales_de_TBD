@@ -1,6 +1,8 @@
 package vista;
 
 import Controlador.AlumnosDAO;
+import Modelo.AlumnoCaretaker;
+import Modelo.AlumnoMemento;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -11,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 public class VentanaBajaAlumnos extends javax.swing.JFrame {
 
     DefaultTableModel modelo;
+    private AlumnoCaretaker caretaker = new AlumnoCaretaker();
 
     public VentanaBajaAlumnos() throws SQLException {
         initComponents();
@@ -38,6 +41,7 @@ public class VentanaBajaAlumnos extends javax.swing.JFrame {
         tbl_alumnos = new javax.swing.JTable();
         btn_eliminar = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
+        btn_deshacer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,6 +122,13 @@ public class VentanaBajaAlumnos extends javax.swing.JFrame {
             }
         });
 
+        btn_deshacer.setText("Deshacer");
+        btn_deshacer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_deshacerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -125,22 +136,21 @@ public class VentanaBajaAlumnos extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lbl_intrucciones)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
+                        .addComponent(lbl_intrucciones)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lbl_num_control)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_num_control, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(67, 67, 67))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btn_deshacer, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +162,8 @@ public class VentanaBajaAlumnos extends javax.swing.JFrame {
                     .addComponent(lbl_num_control)
                     .addComponent(txt_num_control, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_deshacer, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(12, Short.MAX_VALUE))
@@ -195,38 +206,61 @@ public class VentanaBajaAlumnos extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
     private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
-        
-        String numerodecontro = txt_num_control.getText();
-        
-        if (!numerodecontro.equals("")) {
-            
-            System.out.println("Si");
-            
-            if (AlumnosDAO.BuscarNumControlIgualDAO2(txt_num_control.getText())) {
-                
-                System.out.println("Si");
-                
-                if (AlumnosDAO.eliminarAlumnoDAO(txt_num_control.getText())) {
 
-                    try {
-                        JOptionPane.showMessageDialog(this, "Alumno elimindo correctamente");
-              
-                        mostrar();
-                    } catch (SQLException ex) {
-                        Logger.getLogger(VentanaBajaAlumnos.class.getName()).log(Level.SEVERE, null, ex);
+        String numeroDeControl = txt_num_control.getText();
+
+        if (!numeroDeControl.isEmpty()) {
+            
+            if (AlumnosDAO.BuscarNumControlIgualDAO2(numeroDeControl)) {
+                // Obtener datos del alumno antes de eliminar
+                ResultSet alumno = AlumnosDAO.buscarPorNumDAO(numeroDeControl);
+                try {
+                    if (alumno.next()) {
+                        // Crear memento y guardarlo en el caretaker
+                        AlumnoMemento memento = new AlumnoMemento(
+                                alumno.getString(1), alumno.getString(2), alumno.getString(3),
+                                alumno.getString(4), alumno.getString(5), alumno.getInt(6),
+                                alumno.getString(7), alumno.getString(8), alumno.getString(9)
+                        );
+                        caretaker.saveMemento(memento);
+
+                        // Eliminar al alumno
+                        if (AlumnosDAO.eliminarAlumnoDAO(txt_num_control.getText())) {
+                            JOptionPane.showMessageDialog(this, "Alumno eliminado correctamente");
+                            mostrar();
+                        }
                     }
-
-
+                } catch (SQLException ex) {
+                    Logger.getLogger(VentanaBajaAlumnos.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
             } else {
-
-                JOptionPane.showMessageDialog(this, "No se encontro ningun registro con ese numero de control");
-
+                JOptionPane.showMessageDialog(this, "No se encontró ningún registro con ese número de control");
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese un número de control válido");
+        }
 
     }//GEN-LAST:event_btn_eliminarActionPerformed
-    }
+
+    private void btn_deshacerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deshacerActionPerformed
+
+        AlumnoMemento memento = caretaker.restoreMemento();
+        if (memento != null) {
+            if (AlumnosDAO.restaurarAlumnoDAO(memento)) {
+                JOptionPane.showMessageDialog(this, "Alumno restaurado correctamente");
+                try {
+                    mostrar();
+                } catch (SQLException ex) {
+                    Logger.getLogger(VentanaBajaAlumnos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo restaurar el alumno");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay alumnos para restaurar");
+        }
+
+    }//GEN-LAST:event_btn_deshacerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,6 +303,7 @@ public class VentanaBajaAlumnos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_cancelar;
+    private javax.swing.JButton btn_deshacer;
     private javax.swing.JButton btn_eliminar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -286,7 +321,7 @@ public class VentanaBajaAlumnos extends javax.swing.JFrame {
         ResultSet rs = AlumnosDAO.buscar();
 
         String datos[] = new String[9];
-        
+
         //vaciar filas anteriores
         modelo.setRowCount(0);
 

@@ -242,21 +242,31 @@ public class ConexionBD {
         try {
 
             Connection conexion = getConexion();
+            conexion.setAutoCommit(false);
 
-            pstm = conexion.prepareStatement("DELETE FROM Alumnos WHERE num_control = ?");
-            pstm.setString(1, filtro);
+            String queryBitacoras = "DELETE FROM Bitacoras WHERE num_control = ?";
+            PreparedStatement pstmBitacoras = conexion.prepareStatement(queryBitacoras);
+            pstmBitacoras.setString(1, filtro);
 
-            pstm.execute();
+            pstmBitacoras.execute();
+
+            String queryAlumno = "DELETE FROM Alumnos WHERE num_control = ?";
+            PreparedStatement pstmAlumno = conexion.prepareStatement(queryAlumno);
+            pstmAlumno.setString(1, filtro);
+
+            pstmAlumno.execute();
+
+            conexion.commit();
 
             return true;
 
         } catch (Exception e) {
 
-            System.out.println("Error en instrucción DML");
+            System.err.println("Error en la ejecución de la instrucción SQL: " + e.getMessage());
+            e.printStackTrace();
+            return false;
 
         }
-
-        return false;
 
     }
 
@@ -343,10 +353,11 @@ public class ConexionBD {
         return null;
 
     }
+
     //------------------------------------- Consultas Especificas ------------------------------------------
-    public static ResultSet consultaPorFiltroBitacora(String consulta){
-    
-         try {
+    public static ResultSet consultaPorFiltroBitacora(String consulta) {
+
+        try {
 
             Connection conexion = getConexion();
 
@@ -367,23 +378,23 @@ public class ConexionBD {
 
         }
         return null;
-    
+
     }
-    
+
     //------------------------------------- Cambios ------------------------------------------
-    public static boolean cambiosBitacoraBD(Bitacora b){
-    
+    public static boolean cambiosBitacoraBD(Bitacora b) {
+
         try {
 
             Connection conexion = getConexion();
 
-            pstm = conexion.prepareStatement("UPDATE Bitacoras SET  num_control = ?, fecha_tutorias = ?, duracion_tutorias = ?, observaciones = ? WHERE id_bitacora = " + b.getId_bitacora()+ "");
+            pstm = conexion.prepareStatement("UPDATE Bitacoras SET  num_control = ?, fecha_tutorias = ?, duracion_tutorias = ?, observaciones = ? WHERE id_bitacora = " + b.getId_bitacora() + "");
 
             pstm.setInt(1, b.getNum_control());
             pstm.setString(2, b.getFecha_tutorias());
             pstm.setByte(3, b.getDuracion_tutorias());
             pstm.setString(4, b.getObservaciones());
-            
+
             pstm.execute();
 
             return true;
@@ -395,12 +406,12 @@ public class ConexionBD {
         }
 
         return false;
-        
+
     }
-    
-    public static ResultSet ContarCarreraBD(String consulta){
-    
-         try {
+
+    public static ResultSet ContarCarreraBD(String consulta) {
+
+        try {
 
             Connection conexion = getConexion();
 
@@ -421,7 +432,7 @@ public class ConexionBD {
 
         }
         return null;
-        
+
     }
 
 }//clase conexion

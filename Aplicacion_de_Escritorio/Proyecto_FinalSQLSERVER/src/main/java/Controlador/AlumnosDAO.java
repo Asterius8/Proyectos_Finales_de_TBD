@@ -1,7 +1,9 @@
 package Controlador;
 
 import ConexionBD.ConexionBD;
+import Modelo.AlumnoMemento;
 import Modelo.Alumnos;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -20,6 +22,26 @@ public class AlumnosDAO {
         return res;
 
     }
+    
+    public static boolean restaurarAlumnoDAO(AlumnoMemento memento) {
+    String query = "INSERT INTO Alumnos (num_control, nombre_alumno, paterno, materno, fecha_nac, edad, num_telefono, semestre, carrera) "
+                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    try (PreparedStatement stmt = ConexionBD.getConexion().prepareStatement(query)) {
+        stmt.setString(1, memento.getNumeroControl());
+        stmt.setString(2, memento.getNombres());
+        stmt.setString(3, memento.getApPaterno());
+        stmt.setString(4, memento.getApMaterno());
+        stmt.setString(5, memento.getFechaNacimiento());
+        stmt.setInt(6, memento.getEdad());
+        stmt.setString(7, memento.getTelefono());
+        stmt.setString(8, memento.getSemestre());
+        stmt.setString(9, memento.getCarrera());
+        return stmt.executeUpdate() > 0;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+}
 
     //------------------------------------- Bajas ------------------------------------------
     public static boolean eliminarAlumnoDAO(String filtro1) {
@@ -186,5 +208,6 @@ public class AlumnosDAO {
         return false;
 
     }
+    
 
 }
