@@ -18,7 +18,7 @@ public interface BitacorasDAO {
     public void eliminarBitacorasPorId(String ib);
 
     @Query("UPDATE Bitacoras SET nombre_estudiante = :ne, paterno = :p, materno = :m, carrera = :c, fecha = :f WHERE id_bitacora = :ib")
-    public void actualizarBitacora(String ib, String ne, String p, String m, String  c, String f);
+    public void actualizarBitacora(int ib, String ne, String p, String m, String  c, String f);
 
     @Query("SELECT * FROM Bitacoras")
     public List<Bitacoras> mostarTodos();

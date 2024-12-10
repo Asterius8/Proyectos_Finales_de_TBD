@@ -67,6 +67,29 @@ public class Fachada {
 
     }
 
+//------------- CAMBIOS ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+public void modificarBitacora(int id_bi, String nombre_es, String paterno , String materno, String carrera, String fecha){
+
+    new Thread(new Runnable() {
+        @Override
+        public void run() {
+            try {
+
+                bd.bitacorasDAO().actualizarBitacora(id_bi, nombre_es, paterno, materno, carrera, fecha);
+
+
+            } catch (Exception e) {
+
+                Log.e("MSJ->", "Error al actualizar alumno: " + e.getMessage());
+
+            }
+
+        }
+    }).start();
+
+}
+
 //------------- CONSULTAS --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public ArrayList<Bitacoras> consultaCompleta(){
