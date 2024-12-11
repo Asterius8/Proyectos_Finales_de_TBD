@@ -2,16 +2,11 @@ package com.asterius.app_web;
 
 import android.content.Context;
 import android.util.Log;
-
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import bd.TutoriasBD;
 import entidades.Bitacoras;
 
 public class Fachada {
-
     private Context context;
     private TutoriasBD bd;
 
@@ -44,7 +39,6 @@ public class Fachada {
 
     }
 //------------- BAJAS --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
     public void borrarBitacora(String filtro){
 
         new Thread(new Runnable() {
@@ -67,9 +61,8 @@ public class Fachada {
 
     }
 
-//------------- CAMBIOS ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-public void modificarBitacora(int id_bi, String nombre_es, String paterno , String materno, String carrera, String fecha){
+//------------- CAMBIOS ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    public void modificarBitacora(int id_bi, String nombre_es, String paterno , String materno, String carrera, String fecha){
 
     new Thread(new Runnable() {
         @Override
@@ -90,8 +83,7 @@ public void modificarBitacora(int id_bi, String nombre_es, String paterno , Stri
 
 }
 
-//------------- CONSULTAS --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+//------------- CONSULTAS ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public ArrayList<Bitacoras> consultaCompleta(){
 
         ArrayList<Bitacoras> datos;
@@ -108,6 +100,67 @@ public void modificarBitacora(int id_bi, String nombre_es, String paterno , Stri
         datos = (ArrayList<Bitacoras>) bd.bitacorasDAO().mostarPorId(filtro);
 
         Log.i("MSJ", String.valueOf(datos.size()));
+
+        return datos;
+
+    }
+
+//------------- CONSULTAS SIMPLES --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    public ArrayList<Bitacoras> consultaId(String filtro){
+
+        ArrayList<Bitacoras> datos;
+
+        datos = (ArrayList<Bitacoras>) bd.bitacorasDAO().mostarPorId(filtro);
+
+        return datos;
+
+    }
+
+    public ArrayList<Bitacoras> consultaNombre(String filtro){
+
+        ArrayList<Bitacoras> datos;
+
+        datos = (ArrayList<Bitacoras>) bd.bitacorasDAO().mostarPorNombre(filtro);
+
+        return datos;
+
+    }
+
+    public ArrayList<Bitacoras> consultaPaterno(String filtro){
+
+        ArrayList<Bitacoras> datos;
+
+        datos = (ArrayList<Bitacoras>) bd.bitacorasDAO().mostarPorPaterno(filtro);
+
+        return datos;
+
+    }
+
+    public ArrayList<Bitacoras> consultaMaterno(String filtro){
+
+        ArrayList<Bitacoras> datos;
+
+        datos = (ArrayList<Bitacoras>) bd.bitacorasDAO().mostarPorMaterno(filtro);
+
+        return datos;
+
+    }
+
+    public ArrayList<Bitacoras> consultaCarrera(String filtro){
+
+        ArrayList<Bitacoras> datos;
+
+        datos = (ArrayList<Bitacoras>) bd.bitacorasDAO().mostarPorCarrera(filtro);
+
+        return datos;
+
+    }
+
+    public ArrayList<Bitacoras> consultaFecha(String filtro){
+
+        ArrayList<Bitacoras> datos;
+
+        datos = (ArrayList<Bitacoras>) bd.bitacorasDAO().mostarPorFecha(filtro);
 
         return datos;
 
